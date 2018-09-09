@@ -1,0 +1,148 @@
+https://www.yiibai.com/smarty/
+https://www.smarty.net/docs/zh_CN/
+
+a.部署注意事项
+	一级域名 apache配置
+		<VirtualHost *:80>
+  			 DocumentRoot "F:\workspace\test\http\youn9php\public"
+  			 ServerName 127.0.0.1
+		</VirtualHost>
+		Alias /youn9php "F:\workspace\test\http\youn9php\runtime"
+	二级域名及一级域名 均需定义 public/index.php中的 BASE_URI
+
+b.public/comm/cfg/self.cfg.php配置
+	//定义起始URL
+	define('URL_REL', 'http://www.youn9php.com/youn9php/');
+	define('URL_BASE', 'http://www.youn9php.com/');
+	define('URL_ALIS','');
+	//define('URL_ALIS','public/');
+	
+	//定义数据库
+	define('DB_NAME','yd_ops');
+	define('DB_HOST','www.youn9php.com');
+	define('DB_PORT','3306');
+	define('DB_USER','devuser');
+	define('DB_PASSWD','devuser_@sys.1243.com');
+
+c.wordbook表 type含义
+	a)type [0-1000) 表示view相关的列表字段头名称
+		a.type=0+200+200 对应 表(如role) 已存在的非唯一字段  等 角色元素, 通过view.mdl.php 展示  flag_set=1代表编辑时不显示,修改时判断空, +200表示仅在view出现, +200+200表示仅在mod出现
+#		#f.type=5+200+200 对应 表(如role) 已存在的唯一字段  等 角色元素, 通过view.mdl.php 展示  flag_set=1代表编辑时不显示,修改时判断空, +200表示仅在view出现, +200+200表示仅在mod出现
+#		#h.type=7+200+200 对应 表(如role) 已存在用作提示的唯一字段  等 角色元素, 通过view.mdl.php 展示  flag_set=1代表编辑时不显示,修改时判断空, +200表示仅在view出现, +200+200表示仅在mod出现
+#		#i.type=8+200+200 对应 表(如role) 已存在用作提示的非唯一字段  等 角色元素, 通过view.mdl.php 展示  flag_set=1代表编辑时不显示,修改时判断空, +200表示仅在view出现, +200+200表示仅在mod出现
+		b.type=2+200+200 对应 表(如role) 已存在的字段  等 角色元素, 通过view.mdl.php 展示  flag_set=1代表编辑时不显示,修改时不判断空, +200表示仅在view出现, +200+200表示仅在mod出现
+		c.type=3+200+200 对应 表(如role) 已存在的字段  等 角色元素, 通过view.mdl.php 展示  flag_set=1代表编辑时不显示,唯一字段，仅可新增，不可修改, +200表示仅在view出现, +200+200表示仅在mod出现
+		d.type=1+200+200 存储 对应1对多关系模式(如role的具体权限) 等 菜单元素,通过view.mdl.php 展示, +200表示仅在view出现, +200+200表示仅在mod出现
+				wordbook中 sql_mod 用于其modify模块 sql_eval,sql_eval1同时用于其view.inc.php中
+				type是1或4 对应tr为rb_val['id']_[a|b]_tr['cat'],对应td为da_[a|b|c]_val['id']
+		e.type=4+400 存储menu子权限
+		g.type=6+200+200 存储html id=content 中 记录 对应1对1关系模式creator名称 等 信息元素,通过main.mdl.php 展示, +200表示仅在view出现, +200+200表示仅在mod出现
+				wordbook中 sql_eval用于view, sql_eval1用于modify
+		
+	b)type [1000-2000) 表示view表中相关功能
+		e.type=5 存储html id=content 中 记录 纪录功能,通过main.mdl.php展示 flag=1对应modify.mdl.php, flag=0对应view.mdl.php		
+	c)type [2000-2500) 表示menu_func左侧相关功能
+		c.type=3 存储html id=menu_func 中 删除、修改、批设置、批撤销、字段设置 等 菜单功能，通过main.mdl.php展示
+	d)type [2500-3000) 表示menu_func右侧相关功能
+		d.type=2999 存储html id=menu_func 中 搜索 等 菜单功能，通过main.mdl.php展示
+	e)type >=3000 搜索功能对应的下拉选项
+	f)type [5000-10000) 代表 菜单功能 在wordbook中的模版 (对应的type-5000 即可换算为菜单的ID)
+	
+	f.type=7 存储html id=content 中 记录 菜单元素,通过modify_view.mdl.php展示
+	h.type=8 存储html id=content 中 radio 对应1对1关系模式role名称 等 信息元素,通过modify_view.mdl.php 展示
+
+d.menu新增功能，需关联至role_menu表中
+e.默认role表中id=1的记录含所有menu中parent_id<>0的记录
+f.默认user_role表中id=1的记录含所有menu中parent_id<>0的记录
+g.默认role,user两表中都有id=1的记录
+h.ajax路由过程
+	1.ajax传入参数 参数_名称f(模块) 等 至 模块:main_功能:名称f 
+	2.模块:main_功能:名称f (组装拼接参数后) 传入 模块:main_功能:main (加载 模块:名称f_功能:main,模块:名称f_功能:名称f,comm:main)
+		I  .模块:名称f_功能:main (组装拼接sql参数)
+		II .模块:名称f_功能:名称f (组装拼接sql)
+		III.comm:inc:main  (生成ajax返回显示内容)
+i.完善admin权限组语句
+	insert into role_menu select '1',wb.menu_id from role_menu rm right join wordbook wb on wb.menu_id=rm.menu_id and role_id=1 where type<3000 and role_id is null group by wb.menu_id; 
+	insert into role_wordbook select '1',wb.id from role_wordbook rwb right join wordbook wb on wb.id=rwb.wordbook_id and role_id=1 where type<3000 and role_id is null;
+j.vwmod table 元素 tr id 含义
+	1.table id:t_vwmod 该table属于vwmod table
+	2.tr id:[ra|rb]_wordbookID 
+		ra 代表 输入类input信息 
+			td类别 
+				a 代表 输入框 的 名称 
+				b 代表输入内容,判断空
+				c 代表输入ID
+				d 代表输入内容，不判断空
+		rc 代表select选择类input信息
+			td类别 
+				a 代表记录多选arr_k
+				其他与rb相同 
+		rb 代表checkbox选择类input信息
+			td类别
+				a 代表记录多选arr_k，并记录复式多选arr_v
+				b 代表记录多选arr_k,并记录单一多选arr_v    
+				c代表多选arr_v所在td的ID 
+			#最终扩展应该为rb_{tr数据库关联id}_{rb分类}[a|b|c]_{tr子分类}[a|b|...]_{父tr行子分类}_{tr编码}
+			最终扩展应该为rb_{tr数据库关联id}_{rb分类}[a|b|c]_{父tr行id|tr子分类}[a|b|...]_{tr编码}
+k.为避免多用户同时修改造成数据库混乱，需要加锁	
+i.新增子菜单步骤
+	1.menu 表中插入 对应子菜单 记录对应id
+		sql>insert into menu (name,parent_id,modelname,flag_set,type) values
+('分类管理',9,'domain_category',0,0),
+('域名分类',13,'domain_category',0,1);
+	2.wordbook 表中插入 需要 显示的字段
+		sql>insert into wordbook (type,name,colnameid,seq,odr,menu_id,flag_mod) values 
+(0,'序号','id',0,0,11,1),
+(0,'名称','name',1,1,11,0);
+
+		sql>insert into wordbook (type,name,colnameid,seq,odr,menu_id,flag_mod,parent_id,
+	flag_set,sql_col_str,sql_relate,sql_mod,sql_eval,sql_col_str1,sql_eval1,str) 
+	select type,name,colnameid,seq,odr,'{NO.}',flag_mod,parent_id,
+	flag_set,sql_col_str,sql_relate,sql_mod,sql_eval,sql_col_str1,sql_eval1,str 
+	from wordbook where menu_id=12;
+	3.wordbook 表中插入 需要 修改的字段
+		sql>insert into wordbook (type,name,colnameid,odr,menu_id) select type,name,colnameid,odr,
+'11' from wordbook where id between 104 and 107;
+	4.通过 权限管理 给 admin赋权后，再给对应的其他权限赋权	
+	
+	
+	
+	
+	
+######################
+
+http://8btc.com/thread-44502-1-1.html
+门罗 以太 这些提前炒的币，现在买到就是套一生
+
+给个数据idgui.com上点击门罗币的后面的[交易]链接可以进入。
+
+高达93.32%+1.67%的交易量在一个交易平台，如此交易中心化，假如平台造假，超过比特币都是可以刷出来的。国内较少平台上线。
+
+https://www.kraken.com/
+也上线了门罗币。麻烦您增加到idgui.com里面去。
+
+http://www.sohu.com/a/132598509_714867
+
+什么是以太坊？
+
+vps
+https://www.cnblogs.com/cursorhu/p/7157257.html
+
+shadowsocks
+https://blog.csdn.net/junbujianwpl/article/details/78639247
+
+https://www.rxblog.xyz/0-1-shadowsocks-start/
+https://blog.csdn.net/yanzi1225627/article/details/51121507
+
+
+https://vc2tea.com/whats-shadowsocks/
+
+https://blog.csdn.net/liangxun0712/article/details/78840964
+
+https://www.douban.com/note/448426431/
+
+java
+http://www.cnblogs.com/whgk/
+php
+https://blog.csdn.net/u011957758/article/details/52519748
+https://blog.csdn.net/zhang197093/article/details/52226349
