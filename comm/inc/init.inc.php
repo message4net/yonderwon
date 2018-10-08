@@ -23,6 +23,16 @@ class Init {
 //			}
 //		}
 //	}
+
+	/*
+	 * 打印日志
+	 */
+	
+	public function logerr($logerr){
+	    $_dir=BASE_DIR.'log/log.log';
+	    error_log($logerr,3,$_dir);
+	}
+	
 /**
 	*功能:初始化app模版页面
 	*参数:$app_name app的名称
@@ -168,28 +178,38 @@ class Init {
 	*/	
 	public function url_encode(){
 		//$_app_arr=explode('/', $_SERVER['PATH_INFO']);
-        global $APP_ARR;
+        //global $APP_ARR;
 		
-        if (is_numeric(array_search($_REQUEST['a'], $APP_ARR))) {
-		    //echo 'a<br/>';
-			$_app_name=$_REQUEST['a'];
-		} else {
-		    //echo 'b<br/>';
-		    $_app_name='404';
-		}
+//         if (is_numeric(array_search($_REQUEST['a'], $APP_ARR))) {
+// 		    //echo 'a<br/>';
+// 			$_app_name=$_REQUEST['a'];
+// 		} else {
+// 		    //echo 'b<br/>';
+// 		    $_app_name='404';
+// 		}
 
-		define('APP_NAME', $_app_name);
+        //echo BASE_DIR.NAME_APP.DS.$_REQUEST['a'].DS;
+        if($_REQUEST['a']!='' && is_dir(BASE_DIR.NAME_APP.DS.$_REQUEST['a'].DS)){
+            
+            define('APP_NAME', $_REQUEST['a']);
+        }else{
+            define('APP_NAME', '404');
+        }
+
+
+        if($_REQUEST['m']!=''){
         
-		if($_POST['m']!=''){
-		    if(file_exists(BASE_DIR.DS.NAME_APP.DS.$_POST[m].POSTFIX_PHP)){
-		      define(APP_INF, $_REQUEST['m']);
-		    }else{
-		        define(APP_INF, NAME_INDEX);
-		    }
-		}else {
-		    define(APP_INF, NAME_INDEX);
-		}
-//echo APP_INF.'z<br/>'	;	
+            if(file_exists(BASE_DIR.NAME_TMPLT.DS.APP_NAME.DS.$_REQUEST['m'].POSTFIX_TPL)){
+                define(APP_INF, $_REQUEST['m']);
+            }else{
+                define(APP_INF, NAME_INDEX);
+            }
+               
+    	}else {
+    	    define(APP_INF, NAME_INDEX);
+    	}
+	
+
 		$this->load_conf_app(APP_NAME);
 		
 		$this->init_app(APP_NAME);

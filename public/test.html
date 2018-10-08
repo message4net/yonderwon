@@ -1,0 +1,82 @@
+
+ 
+ 
+ <div id="a"></div>
+ <div name="contentb" id="b">
+        <p></p>
+ </div>
+ 
+ 
+  <style>
+            .ck-editor__editable {
+                min-height: 200px;
+            }
+            
+            #b {border:1px solid grey}
+        </style>
+ 
+ <script src="trth/js/jquery.min.js"></script>
+ <!-- 
+<script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/decoupled-document/ckeditor.js"></script>
+ -->
+ <script src="trth/js/ckeditor.js"></script>
+ 
+<script>
+
+    
+    
+    
+//  上传适配器，格式官网上有，以一种Promise 的方式。Promise好像是有阻塞的意思在里面。
+    class UploadAdapter {
+        constructor(loader) {
+            this.loader = loader;
+        }
+        upload() {
+            return new Promise((resolve, reject) => {
+                const data = new FormData();
+                data.append('upload', this.loader.file);
+                data.append('allowSize', 10);//允许图片上传的大小/兆
+                $.ajax({
+                    url: 'index.php?a=comm&m=upl',
+                    type: 'POST',
+                    data: data,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data.res) {
+                            resolve({
+                                default: data.url
+                            });
+                        } else {
+                            reject(data.msg);
+                        }
+
+                    }
+                });
+               
+            });
+        }
+        abort() {
+        }
+    }
+
+    DecoupledEditor
+            .create( document.querySelector( '#b' ), {
+                language:"zh-cn"
+            })
+            .then( editor => {
+                const toolbarContainer = document.querySelector( '#a' );
+                toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+                
+               // 这个地方加载了适配器
+                editor.plugins.get('FileRepository').createUploadAdapter = (loader)=>{
+                    return new UploadAdapter(loader);
+                };
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    
+    $('#a').append('<div>zzzzz</div>');
+</script>

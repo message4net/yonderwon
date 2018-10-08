@@ -10,7 +10,7 @@
 		 </div>
 		 <div class="banner_head_top">
 			  <div class="logo">
-					 <h1><a href="index.html">Game<span class="glyphicon glyphicon-knight" aria-hidden="true"></span><span>Spot</span></a></h1>
+					 <h1><a href="index.php?a=yonderwon">Game<span class="glyphicon glyphicon-knight" aria-hidden="true"></span><span>Spot</span></a></h1>
 			 </div>	
 			 <div class="top-menu">	 
 			     <div class="content white">
@@ -46,7 +46,7 @@
 					  <!--/navbar-->
 				 </div>
 					 <div class="clearfix"></div>
-					<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+					<script type="text/javascript" src="{APP_NAME}/js/bootstrap-3.1.1.min.js"></script>
 			  </div>
 				 <div class="clearfix"></div>
 		  </div>

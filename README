@@ -1,6 +1,10 @@
 https://www.yiibai.com/smarty/
 https://www.smarty.net/docs/zh_CN/
 
+若页数<=7，逐一列出
+若页数大于7,当前页<7，
+若页数
+
 a.部署注意事项
 	一级域名 apache配置
 		<VirtualHost *:80>
