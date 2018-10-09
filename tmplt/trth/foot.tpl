@@ -59,6 +59,7 @@
 <td>密码:</td> 
 <td ><input type="text" style="height:50%"/></td><td></td> 
 </tr> 
+<tr><td></td><td colspan="2" id="drag"></td><td></td></tr>
 <tr> <td></td>
 <td colspan="2"><div style="text-align:center"><a id="lgrrgsbmttl" href="javascript:;">提交</a></div></td><td></td>	 
 </tr> 
@@ -214,6 +215,7 @@ DecoupledEditor
             const toolbarContainer = document.querySelector( '#contact-toolbar' );
             toolbarContainer.appendChild( editor.ui.view.toolbar.element );
             
+            
            // 这个地方加载了适配器
             editor.plugins.get('FileRepository').createUploadAdapter = (loader)=>{ldelim}
                 return new UploadAdapter(loader);
@@ -223,6 +225,56 @@ DecoupledEditor
             console.error( error );
         {rdelim} );
     	
+ 
+    	//拖动验证
+		var x,  isMove = false
+		var drag = $('#drag');
+		
+		var html = '<div class="drag_bg"></div>'+
+                    '<div class="drag_text" onselectstart="return false;" unselectable="on">拖动滑块验证</div>'+
+                    '<div class="handler handler_bg"></div>';
+        drag.append(html);
+		
+        var handler = drag.find('.handler');
+        var drag_bg = drag.find('.drag_bg');
+        var text = drag.find('.drag_text');
+        var maxWidth = drag.width() - handler.width();  //能滑动的最大间距
+        
+        //鼠标按下时候的x轴的位置
+        handler.mousedown(function(e){ldelim}
+            isMove = true;
+            x = e.pageX - parseInt(handler.css('left'), 10);
+        {rdelim});
+        
+        //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+        $(document).mousemove(function(e){ldelim}
+            var _x = e.pageX - x;
+            if(isMove){ldelim}
+                if(_x > 0 && _x <= maxWidth){ldelim}
+                    handler.css({ldelim}'left': _x{rdelim});
+                    drag_bg.css({ldelim}'width': _x{rdelim});
+                {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+                    dragOk();
+                {rdelim}
+            {rdelim}
+        {rdelim}).mouseup(function(e){ldelim}
+            isMove = false;
+            var _x = e.pageX - x;
+            if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+                handler.css({ldelim}'left': 0{rdelim});
+                drag_bg.css({ldelim}'width': 0{rdelim});
+            {rdelim}
+        {rdelim});
+        
+        //清空事件
+        function dragOk(){ldelim}
+            handler.removeClass('handler_bg').addClass('handler_ok_bg');
+            text.text('验证通过');
+            drag.css({ldelim}'color': '#fff'{rdelim});
+            handler.unbind('mousedown');
+            $(document).unbind('mousemove');
+            $(document).unbind('mouseup');
+        {rdelim}
     	
 	</script>
 

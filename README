@@ -1,5 +1,11 @@
 https://www.yiibai.com/smarty/
 https://www.smarty.net/docs/zh_CN/
+https://blog.csdn.net/zou8944/article/details/80957666
+https://www.cnblogs.com/circulatttt/p/4974934.html
+
+I.项目使用 index.php 唯一接口访问,如
+	./index.php?a=${appname}&m=${mdlname}
+	a代表app名称,m代表路径名称
 
 若页数<=7，逐一列出
 若页数大于7,当前页<7，

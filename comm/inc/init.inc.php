@@ -136,12 +136,12 @@ class Init {
 					if(is_dir($dir.DIRECTORY_SEPARATOR.$item)){
 						$this->remove_directory($dir.DIRECTORY_SEPARATOR.$item);
 					}else{
-						unlink($dir.DIRECTORY_SEPARATOR.$item);
+						@unlink($dir.DIRECTORY_SEPARATOR.$item);
 					}
 				}
 			}
 			closedir($handle);
-			rmdir($dir);
+			@rmdir($dir);
 		}
 	}
 
