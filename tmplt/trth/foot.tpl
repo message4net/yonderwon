@@ -59,7 +59,9 @@
 <td>密码:</td> 
 <td ><input type="text" style="height:50%"/></td><td></td> 
 </tr> 
-<tr><td></td><td colspan="2" id="drag"></td><td></td></tr>
+<tr><td></td><td colspan="2"><div id="drag"><div class="drag_bg"></div><div class="drag_text">拖动滑块验证</div><div class="handler handler_bg"></div></div></td><td></td></tr>
+
+
 <tr> <td></td>
 <td colspan="2"><div style="text-align:center"><a id="lgrrgsbmttl" href="javascript:;">提交</a></div></td><td></td>	 
 </tr> 
@@ -84,6 +86,7 @@
 
     <script type="text/javascript">
     	el_hdr=$('#el_hdr');
+    	el_drg=$('#drag');
     	flg_lgrrg=0;
     	function wbdtini(){ldelim}
     		//共用
@@ -229,11 +232,6 @@ DecoupledEditor
     	//拖动验证
 		var x,  isMove = false
 		var drag = $('#drag');
-		
-		var html = '<div class="drag_bg"></div>'+
-                    '<div class="drag_text" onselectstart="return false;" unselectable="on">拖动滑块验证</div>'+
-                    '<div class="handler handler_bg"></div>';
-        drag.append(html);
 		
         var handler = drag.find('.handler');
         var drag_bg = drag.find('.drag_bg');
