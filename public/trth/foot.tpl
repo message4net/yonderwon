@@ -79,10 +79,10 @@
             #contact-body {ldelim}border-right:1px solid grey;border-left:1px solid grey;border-bottom:1px solid grey; {rdelim}
 </style>
     
-    <script src="{APP_NAME}/js/jquery.min.js"></script>
-    <script src="{APP_NAME}/js/bootstrap.min.js"></script>
-    <script src="{APP_NAME}/js/modernizr.js"></script>
-    <script src="{APP_NAME}/js/ckeditor.js"></script>
+    <script src="trth/js/jquery.min.js"></script>
+    <script src="trth/js/bootstrap.min.js"></script>
+    <script src="trth/js/modernizr.js"></script>
+    <script src="trth/js/ckeditor.js"></script>
 
     <script type="text/javascript">
     	el_hdr=$('#el_hdr');
@@ -255,8 +255,8 @@ DecoupledEditor
         //鼠标按下时候的x轴的位置
         handler.mousedown(function(e){ldelim}
             isMove = true;
-            //x = e.pageX - parseInt(handler.css('left'), 10);
-            x = e.pageX ;
+            x = e.pageX - parseInt(handler.css('left'), 10);
+            //x = e.pageX - parseInt(handler.offset().left, 10);
         {rdelim});
         
         //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离

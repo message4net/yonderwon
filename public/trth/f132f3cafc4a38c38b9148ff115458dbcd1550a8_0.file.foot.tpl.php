@@ -1,4 +1,27 @@
-    </div>
+<?php
+/* Smarty version 3.1.32, created on 2018-10-15 16:56:11
+  from '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.32',
+  'unifunc' => 'content_5bc4aa8b4b5d41_75723337',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'f132f3cafc4a38c38b9148ff115458dbcd1550a8' => 
+    array (
+      0 => '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl',
+      1 => 1539615369,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5bc4aa8b4b5d41_75723337 (Smarty_Internal_Template $_smarty_tpl) {
+?>    </div>
 
     <footer>
         <div class="widewrapper footer">
@@ -71,24 +94,37 @@
 </div>
 
 <style>
-            .ck-editor__editable {ldelim}
+            .ck-editor__editable {
                 min-height: 200px;
-            {rdelim}
+            }
             
-            #contact-toolbar {ldelim}margin-top:15px{rdelim}
-            #contact-body {ldelim}border-right:1px solid grey;border-left:1px solid grey;border-bottom:1px solid grey; {rdelim}
+            #contact-toolbar {margin-top:15px}
+            #contact-body {border-right:1px solid grey;border-left:1px solid grey;border-bottom:1px solid grey; }
 </style>
     
-    <script src="{APP_NAME}/js/jquery.min.js"></script>
-    <script src="{APP_NAME}/js/bootstrap.min.js"></script>
-    <script src="{APP_NAME}/js/modernizr.js"></script>
-    <script src="{APP_NAME}/js/ckeditor.js"></script>
+    <?php echo '<script'; ?>
+ src="<?php echo APP_NAME;?>
+/js/jquery.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="<?php echo APP_NAME;?>
+/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="<?php echo APP_NAME;?>
+/js/modernizr.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="<?php echo APP_NAME;?>
+/js/ckeditor.js"><?php echo '</script'; ?>
+>
 
-    <script type="text/javascript">
+    <?php echo '<script'; ?>
+ type="text/javascript">
     	el_hdr=$('#el_hdr');
     	el_drg=$('#drag');
     	flg_lgrrg=0;
-    	function wbdtini(){ldelim}
+    	function wbdtini(){
     		//共用
     		wd_ht=$(window).height();
     		scrll_tp=$(document).scrollTop();
@@ -103,43 +139,43 @@
     		wd_wdth=$(window).width();
     		el_lft_drg=el_drg.offset().left;
     		el_tp_drg=el_drg.offset().top;
-    		$('.handler').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
-    		$('.drag_bg').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
-    		$('.drag_text').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
+    		$('.handler').offset({top:el_tp_drg,left:el_lft_drg});
+    		$('.drag_bg').offset({top:el_tp_drg,left:el_lft_drg});
+    		$('.drag_text').offset({top:el_tp_drg,left:el_lft_drg});
     		
-    	{rdelim}
+    	}
     	
     	wbdtini();
     	
-    	$(window).on('resize scroll',function(){ldelim}
+    	$(window).on('resize scroll',function(){
     		wbdtini();
-    		if(scrll_tp>=el_ht_hd){ldelim}
-    			if(2*el_ht_hd<wd_ht && 2*el_ht_hd<bd_ht){ldelim}
-    				el_hdr.offset({ldelim}top:scrll_tp,left:0{rdelim});
-    			{rdelim}
-    		{rdelim}else{ldelim}
-    			el_hdr.offset({ldelim}top:0,left:0{rdelim});
-    		{rdelim}	
-    		if(flg_lgrrg!=0){ldelim}
+    		if(scrll_tp>=el_ht_hd){
+    			if(2*el_ht_hd<wd_ht && 2*el_ht_hd<bd_ht){
+    				el_hdr.offset({top:scrll_tp,left:0});
+    			}
+    		}else{
+    			el_hdr.offset({top:0,left:0});
+    		}	
+    		if(flg_lgrrg!=0){
     			logorreg(flg_lgrrg);
-    		{rdelim}
+    		}
     		
-    	{rdelim});
+    	});
 
-    	function logorreg(flg){ldelim}
+    	function logorreg(flg){
     		flg_lgrrg=flg;
     		el_lgrrg=$('#logorreg');
     		el_zhzh=$('#zhezhao');
     		//alert('drgTop1:'+el_drg.offset().top+',drgLeft1:'+el_drg.offset().left);
-    		if(flg==1){ldelim}
+    		if(flg==1){
     			$('#h3tl').html('登陆');
     			$('#lgrrgatl').html('注册');
     			$('#lgrrgatl').attr('onclick','logorreg(2)');
-    		{rdelim}else if(flg==2){ldelim}
+    		}else if(flg==2){
     			$('#h3tl').html('注册');
     			$('#lgrrgatl').html('登陆');
     			$('#lgrrgatl').attr('onclick','logorreg(1)');
-    		{rdelim}
+    		}
     		
     		el_zhzh.css('display','block');
     		el_lgrrg.css('display','block');
@@ -147,100 +183,100 @@
     		
     		el_lft_drg=el_drg.offset().left;
     		el_tp_drg=el_drg.offset().top;
-    		$('.handler').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
-    		$('.drag_bg').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
-    		$('.drag_text').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
+    		$('.handler').offset({top:el_tp_drg,left:el_lft_drg});
+    		$('.drag_bg').offset({top:el_tp_drg,left:el_lft_drg});
+    		$('.drag_text').offset({top:el_tp_drg,left:el_lft_drg});
 
-    		if((wd_wdth<300 && wd_ht<600) || (wd_wdth<600 && wd_ht<300)){ldelim}
+    		if((wd_wdth<300 && wd_ht<600) || (wd_wdth<600 && wd_ht<300)){
     			el_lgrrg.css('width','95%');
     			el_lgrrg.css('height','95%');
-    		{rdelim}else{ldelim}
-    			if(wd_wdth>wd_ht){ldelim}
+    		}else{
+    			if(wd_wdth>wd_ht){
     				el_lgrrg.css('width','600px');
     				el_lgrrg.css('height','300px');	
-    			{rdelim}else{ldelim}
+    			}else{
     				el_lgrrg.css('width','300px');
     				el_lgrrg.css('height','600px');
-    			{rdelim}
-	   		{rdelim}
+    			}
+	   		}
     		el_wdth_lgrrg=el_lgrrg.width();
     		el_ht_lgrrg=el_lgrrg.height();
     		el_ht_zhzh=el_zhzh.height();
 
-     		if(el_ht_lgrrg+scrll_tp<bd_ht){ldelim}
+     		if(el_ht_lgrrg+scrll_tp<bd_ht){
     			//alert(1);
-    			el_lgrrg.offset({ldelim}top:(scrll_tp+wd_ht/2-el_ht_lgrrg/2),left:(wd_wdth/2-el_wdth_lgrrg/2){rdelim});
-    		{rdelim}else{ldelim}
-    			el_lgrrg.offset({ldelim}top:(bd_ht-el_ht_lgrrg),left:(wd_wdth/2-el_wdth_lgrrg/2){rdelim});
-    		{rdelim} 
-    		if(el_ht_zhzh+scrll_tp<bd_ht){ldelim}
-    			el_zhzh.offset({ldelim}top:scrll_tp,left:0{rdelim});
-    		{rdelim}else{ldelim}
-    			el_zhzh.offset({ldelim}top:bd_ht-el_ht_zhzh,left:0{rdelim});
-    		{rdelim}
+    			el_lgrrg.offset({top:(scrll_tp+wd_ht/2-el_ht_lgrrg/2),left:(wd_wdth/2-el_wdth_lgrrg/2)});
+    		}else{
+    			el_lgrrg.offset({top:(bd_ht-el_ht_lgrrg),left:(wd_wdth/2-el_wdth_lgrrg/2)});
+    		} 
+    		if(el_ht_zhzh+scrll_tp<bd_ht){
+    			el_zhzh.offset({top:scrll_tp,left:0});
+    		}else{
+    			el_zhzh.offset({top:bd_ht-el_ht_zhzh,left:0});
+    		}
 
     		
-    	{rdelim}
+    	}
     	
-    	function lgrrgx(){ldelim}
+    	function lgrrgx(){
     		flg_lgrrg=0;
     		el_zhzh.css('display','none');
     		el_lgrrg.css('display','none');
-    	{rdelim}
+    	}
     	
 
 //  上传适配器，格式官网上有，以一种Promise 的方式。Promise好像是有阻塞的意思在里面。
-class UploadAdapter {ldelim}
-    constructor(loader) {ldelim}
+class UploadAdapter {
+    constructor(loader) {
         this.loader = loader;
-    {rdelim}
-    upload() {ldelim}
-        return new Promise((resolve, reject) => {ldelim}
+    }
+    upload() {
+        return new Promise((resolve, reject) => {
             const data = new FormData();
             data.append('upload', this.loader.file);
             data.append('allowSize', 10);//允许图片上传的大小/兆
-            $.ajax({ldelim}
+            $.ajax({
                 url: 'index.php?a=comm&m=upl',
                 type: 'POST',
                 data: data,
                 dataType: 'json',
                 processData: false,
                 contentType: false,
-                success: function (data) {ldelim}
-                    if (data.res) {ldelim}
-                        resolve({ldelim}
+                success: function (data) {
+                    if (data.res) {
+                        resolve({
                             default: data.url
-                        {rdelim});
-                    {rdelim} else {ldelim}
+                        });
+                    } else {
                         reject(data.msg);
-                    {rdelim}
+                    }
 
-                {rdelim}
-            {rdelim});
+                }
+            });
            
-        {rdelim});
-    {rdelim}
-    abort() {ldelim}
-    {rdelim}
-{rdelim}
+        });
+    }
+    abort() {
+    }
+}
 
 DecoupledEditor
-        .create( document.querySelector( '#contact-body' ), {ldelim}
+        .create( document.querySelector( '#contact-body' ), {
             language:"zh-cn"
-        {rdelim})
-        .then( editor => {ldelim}
+        })
+        .then( editor => {
             const toolbarContainer = document.querySelector( '#contact-toolbar' );
             toolbarContainer.appendChild( editor.ui.view.toolbar.element );
             
             
            // 这个地方加载了适配器
-            editor.plugins.get('FileRepository').createUploadAdapter = (loader)=>{ldelim}
+            editor.plugins.get('FileRepository').createUploadAdapter = (loader)=>{
                 return new UploadAdapter(loader);
-            {rdelim};
-        {rdelim} )
-        .catch( error => {ldelim}
+            };
+        } )
+        .catch( error => {
             console.error( error );
-        {rdelim} );
+        } );
     	
  
     	//拖动验证
@@ -253,43 +289,45 @@ DecoupledEditor
         var maxWidth = drag.width() - handler.width();  //能滑动的最大间距
         
         //鼠标按下时候的x轴的位置
-        handler.mousedown(function(e){ldelim}
+        handler.mousedown(function(e){
             isMove = true;
-            //x = e.pageX - parseInt(handler.css('left'), 10);
-            x = e.pageX ;
-        {rdelim});
+            x = e.pageX - parseInt(handler.css('left'), 10);
+            //x = e.pageX - parseInt(handler.offset().left, 10);
+        });
         
         //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
-        $(document).mousemove(function(e){ldelim}
+        $(document).mousemove(function(e){
             var _x = e.pageX - x;
-            if(isMove){ldelim}
-                if(_x > 0 && _x <= maxWidth){ldelim}
-                    handler.css({ldelim}'left': _x{rdelim});
-                    drag_bg.css({ldelim}'width': _x{rdelim});
-                {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+            if(isMove){
+                if(_x > 0 && _x <= maxWidth){
+                    handler.css({'left': _x});
+                    drag_bg.css({'width': _x});
+                }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
                     dragOk();
-                {rdelim}
-            {rdelim}
-        {rdelim}).mouseup(function(e){ldelim}
+                }
+            }
+        }).mouseup(function(e){
             isMove = false;
             var _x = e.pageX - x;
-            if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-                handler.css({ldelim}'left': 0{rdelim});
-                drag_bg.css({ldelim}'width': 0{rdelim});
-            {rdelim}
-        {rdelim});
+            if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+                handler.css({'left': 0});
+                drag_bg.css({'width': 0});
+            }
+        });
         
         //清空事件
-        function dragOk(){ldelim}
+        function dragOk(){
             handler.removeClass('handler_bg').addClass('handler_ok_bg');
             text.text('验证通过');
-            el_drg.css({ldelim}'color': '#fff'{rdelim});
+            el_drg.css({'color': '#fff'});
             handler.unbind('mousedown');
             $(document).unbind('mousemove');
             $(document).unbind('mouseup');
-        {rdelim}
+        }
     	
-	</script>
+	<?php echo '</script'; ?>
+>
 
 </body>
-</html>
+</html><?php }
+}
