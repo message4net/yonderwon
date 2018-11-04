@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-10-15 16:56:11
+/* Smarty version 3.1.32, created on 2018-11-04 16:52:27
   from '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5bc4aa8b4b5d41_75723337',
+  'unifunc' => 'content_5bdf15bb13ce28_87046187',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f132f3cafc4a38c38b9148ff115458dbcd1550a8' => 
     array (
       0 => '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl',
-      1 => 1539615369,
+      1 => 1541346736,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5bc4aa8b4b5d41_75723337 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5bdf15bb13ce28_87046187 (Smarty_Internal_Template $_smarty_tpl) {
 ?>    </div>
 
     <footer>
@@ -281,23 +281,25 @@ DecoupledEditor
  
     	//拖动验证
 		var x,  isMove = false
-		var drag = $('#drag');
+		//var drag = $('#drag');
 		
-        var handler = drag.find('.handler');
-        var drag_bg = drag.find('.drag_bg');
-        var text = drag.find('.drag_text');
-        var maxWidth = drag.width() - handler.width();  //能滑动的最大间距
+        var handler = el_drg.find('.handler');
+        var drag_bg = el_drg.find('.drag_bg');
+        var text = el_drg.find('.drag_text');
+        var maxWidth = el_drg.width() - handler.width();  //能滑动的最大间距
         
         //鼠标按下时候的x轴的位置
         handler.mousedown(function(e){
             isMove = true;
-            x = e.pageX - parseInt(handler.css('left'), 10);
-            //x = e.pageX - parseInt(handler.offset().left, 10);
+            //x = e.pageX - parseInt(handler.css('left'), 10);
+            //x = e.pageX ;
+            x=handler.pageX;
         });
         
         //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
         $(document).mousemove(function(e){
-            var _x = e.pageX - x;
+            //var _x = e.pageX - x;
+            var _x = x.pageX - x;
             if(isMove){
                 if(_x > 0 && _x <= maxWidth){
                     handler.css({'left': _x});
@@ -308,7 +310,8 @@ DecoupledEditor
             }
         }).mouseup(function(e){
             isMove = false;
-            var _x = e.pageX - x;
+            //var _x = e.pageX - x;
+            var _x = x.pageX - x;
             if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
                 handler.css({'left': 0});
                 drag_bg.css({'width': 0});
