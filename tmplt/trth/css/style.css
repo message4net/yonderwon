@@ -1393,7 +1393,8 @@ filter:alpha(opacity=80);
 /* display:none;   */
 } 
 #logorreg{ /*  JSdisplay: block */ 
-position:absolute; 
+position:absolute;
+/*position:relative; */
 z-index:9002; 
 width:100%; 
 height:100%; 
@@ -1403,7 +1404,7 @@ height:100%;
 margin:auto; 
 background:#ccc; 
 width:50%; 
-width:50%;
+/*height:100%;*/
 } 
 
 #logorreg table tr td a{ /**/ 
@@ -1419,7 +1420,8 @@ font-weight:bold;
 #drag{ 
     position: relative;
     background-color: #e8e8e8; 
-    width: 260px;
+    /*width: 100px;*/
+    width:50%;
     height: 24px;
     line-height: 24px;
     text-align: center;
@@ -1428,7 +1430,8 @@ font-weight:bold;
 }
 
 .handler{
-    position: absolute;
+    /*position: absolute;*/
+    position: relative;
     top: 0px;
     left: 0px;
     width: 30px;
@@ -1448,8 +1451,10 @@ font-weight:bold;
     width: 0px;
 }
 .drag_text{
-    position: absolute;
+    /*position: absolute;*/
+    position: relative;
     top: 0px;
+    /*width: 260px;*/
     width: 260px;
     text-align: center;
     -moz-user-select: none;

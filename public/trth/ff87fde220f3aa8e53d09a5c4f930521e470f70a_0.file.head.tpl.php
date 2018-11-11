@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-11-04 16:52:27
+/* Smarty version 3.1.32, created on 2018-11-11 23:34:09
   from '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/head.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5bdf15bb0ce491_17328330',
+  'unifunc' => 'content_5be8ae612ba188_26575258',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5bdf15bb0ce491_17328330 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5be8ae612ba188_26575258 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

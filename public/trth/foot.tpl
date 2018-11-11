@@ -56,10 +56,10 @@
 <td ><input type="text" style="height:50%;"/></td><td></td> 
 </tr> 
 <tr> <td>&nbsp;&nbsp;&nbsp;</td>
-<td>密码:</td> 
+<td id="tdpwd">密码:</td> 
 <td ><input type="text" style="height:50%"/></td><td></td> 
 </tr> 
-<tr><td></td><td colspan="2"><div id="drag"><div class="drag_bg"></div><div class="drag_text">拖动滑块验证</div><div class="handler handler_bg"></div></div></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td><td id="tddrg" colspan="2"><div id="drag"><div class="drag_bg"></div><div class="drag_text">拖动滑块验证</div><div class="handler handler_bg"></div></div></td><td></td></tr>
 
 
 <tr> <td></td>
@@ -87,6 +87,7 @@
     <script type="text/javascript">
     	el_hdr=$('#el_hdr');
     	el_drg=$('#drag');
+    	el_lgrrg=$('#logorreg');
     	flg_lgrrg=0;
     	function wbdtini(){ldelim}
     		//共用
@@ -128,7 +129,7 @@
 
     	function logorreg(flg){ldelim}
     		flg_lgrrg=flg;
-    		el_lgrrg=$('#logorreg');
+    		//el_lgrrg=$('#logorreg');
     		el_zhzh=$('#zhezhao');
     		//alert('drgTop1:'+el_drg.offset().top+',drgLeft1:'+el_drg.offset().left);
     		if(flg==1){ldelim}
@@ -143,13 +144,24 @@
     		
     		el_zhzh.css('display','block');
     		el_lgrrg.css('display','block');
-    		el_drg.css('display','block');
+
+    		
+    		//$('.handler').css('display','block');
+    		
+    		
+//alert($('#tddrg').offset().left+':tdlft,'+el_drg.offset().left+':divdrgleft,'+$('#tdpwd').offset().left+':tdpwd.left');
+    		
+			el_drg.css('display','block');
+    		$('.handler').css('display','block');
     		
     		el_lft_drg=el_drg.offset().left;
     		el_tp_drg=el_drg.offset().top;
     		$('.handler').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
     		$('.drag_bg').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
     		$('.drag_text').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
+
+//alert(el_drg.width()+':drg.width,');
+
 
     		if((wd_wdth<300 && wd_ht<600) || (wd_wdth<600 && wd_ht<300)){ldelim}
     			el_lgrrg.css('width','95%');
@@ -245,42 +257,138 @@ DecoupledEditor
  
     	//拖动验证
 		var x,  isMove = false
-		//var drag = $('#drag');
 		
         var handler = el_drg.find('.handler');
         var drag_bg = el_drg.find('.drag_bg');
         var text = el_drg.find('.drag_text');
-        var maxWidth = el_drg.width() - handler.width();  //能滑动的最大间距
+
+        var maxWidth = el_lgrrg.find('tr').width() - handler.width();  //能滑动的最大间距
+        if(maxWidth>230){ldelim}
+        	maxWidth=215;
+        {rdelim}
+ //       else{ldelim}
+ //       	maxWidth=230;
+ //       {rdelim}
+
+//        //鼠标按下时候的x轴的位置
+//        handler.mousedown(function(e){ldelim}
+//            isMove = true;
+//            //x = e.pageX - parseInt(handler.css('left'), 10);
+//            x = e.pageX ;
+//            //x=handler.offset().left;
+//            
+//            //alert(el_drg.width()+':eldrg.wdth,'+handler.width()+':hdlr.wdth');
+//        {rdelim});
+//        
+//        //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+//        $(document).mousemove(function(e){ldelim}
+//            var _x = e.pageX - x;
+//            //var _x = handler.offset().left; - x;
+//            if(isMove){ldelim}
+//                if(_x > 0 && _x <= maxWidth){ldelim}
+//                    handler.css({ldelim}'left': _x{rdelim});
+//                    drag_bg.css({ldelim}'width': _x{rdelim});
+//                {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+//                alert(_x);
+//                    dragOk();
+//                    
+//                {rdelim}
+//            {rdelim}
+//        {rdelim}).mouseup(function(e){ldelim}
+//            isMove = false;
+//            var _x = e.pageX - x;
+//            //var _x = x.pageX - x;
+//            if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+//                handler.css({ldelim}'left': 0{rdelim});
+//                drag_bg.css({ldelim}'width': 0{rdelim});
+//                
+//            {rdelim}
+//            
+//        {rdelim});
         
-        //鼠标按下时候的x轴的位置
-        handler.mousedown(function(e){ldelim}
-            isMove = true;
-            //x = e.pageX - parseInt(handler.css('left'), 10);
-            //x = e.pageX ;
-            x=handler.pageX;
-        {rdelim});
+        //a
+ function isPC(){ldelim}
+           var userAgentInfo = navigator.userAgent; 
+           var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"); 
+           var flag = true; 
+           for (var v = 0; v < Agents.length; v++) {ldelim} 
+               if (userAgentInfo.indexOf(Agents[v]) > 0) {ldelim} flag = false; break; {rdelim}
+           {rdelim} 
+           return flag; 
+{rdelim}        
+
+        function teini() {ldelim}
+            if (isPC()) {ldelim}
+                touchEvents.touchstart = "mousedown";
+                //touchstart = "mousedown";
+                touchEvents.touchmove = "mousemove";
+                touchEvents.touchend = "mouseup";
+            {rdelim}
+        {rdelim}
+
+
+var touchEvents = {ldelim}
+        touchstart: "touchstart",
+        touchmove: "touchmove",
+        touchend: "touchend",
+
+        /**
+         * @desc:判断是否pc设备，若是pc，需要更改touch事件为鼠标事件，否则默认触摸事件
+         */
+        initTouchEvents: function () {ldelim}
+            if (isPC()) {ldelim}
+                //this.touchstart = "mousedown";
+                this.touchstart = "mousedown";
+                this.touchmove = "mousemove";
+                this.touchend = "mouseup";
+            {rdelim}
+        {rdelim}
+    {rdelim};
+
+teini();
+
+//alert(isPC()+':ispc,'+touchEvents.touchstart);
+
         
-        //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
-        $(document).mousemove(function(e){ldelim}
-            //var _x = e.pageX - x;
-            var _x = x.pageX - x;
-            if(isMove){ldelim}
-                if(_x > 0 && _x <= maxWidth){ldelim}
-                    handler.css({ldelim}'left': _x{rdelim});
-                    drag_bg.css({ldelim}'width': _x{rdelim});
-                {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
-                    dragOk();
-                {rdelim}
-            {rdelim}
-        {rdelim}).mouseup(function(e){ldelim}
-            isMove = false;
-            //var _x = e.pageX - x;
-            var _x = x.pageX - x;
-            if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-                handler.css({ldelim}'left': 0{rdelim});
-                drag_bg.css({ldelim}'width': 0{rdelim});
-            {rdelim}
-        {rdelim});
+               //鼠标按下时候的x轴的位置
+       handler.on(touchEvents.touchstart,function(e){ldelim}
+           isMove = true;
+           x = e.targetTouches[0].pageX ;
+           e.preventDefault();
+           //alert(el_drg.width()+':eldrg.wdth,'+handler.width()+':hdlr.wdth');
+       {rdelim});
+       
+       //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+       $(document).on(touchEvents.touchmove,function(e){ldelim}
+           var _x = e.targetTouches[0].pageX - x;
+           if(isMove){ldelim}
+               if(_x > 0 && _x <= maxWidth){ldelim}
+                   handler.css({ldelim}'left': _x{rdelim});
+                   drag_bg.css({ldelim}'width': _x{rdelim});
+               {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+                   dragOk();
+               {rdelim}
+           {rdelim}
+           e.preventDefault()
+       {rdelim}).on(touchEvents.touchend,function(e){ldelim}
+           isMove = false;
+           var _x = e.targetTouches[0].pageX - x;
+           if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+               handler.css({ldelim}'left': 0{rdelim});
+               drag_bg.css({ldelim}'width': 0{rdelim});
+           {rdelim}
+           e.preventDefault()
+       {rdelim});
+
+ 
+ 
+    
+        
+        //b
+        
+        
+        
+        
         
         //清空事件
         function dragOk(){ldelim}

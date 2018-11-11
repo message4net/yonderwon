@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-11-04 16:52:27
+/* Smarty version 3.1.32, created on 2018-11-11 23:34:09
   from '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5bdf15bb13ce28_87046187',
+  'unifunc' => 'content_5be8ae6134ad92_50543324',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f132f3cafc4a38c38b9148ff115458dbcd1550a8' => 
     array (
       0 => '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl',
-      1 => 1541346736,
+      1 => 1541975641,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5bdf15bb13ce28_87046187 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5be8ae6134ad92_50543324 (Smarty_Internal_Template $_smarty_tpl) {
 ?>    </div>
 
     <footer>
@@ -79,10 +79,10 @@ function content_5bdf15bb13ce28_87046187 (Smarty_Internal_Template $_smarty_tpl)
 <td ><input type="text" style="height:50%;"/></td><td></td> 
 </tr> 
 <tr> <td>&nbsp;&nbsp;&nbsp;</td>
-<td>密码:</td> 
+<td id="tdpwd">密码:</td> 
 <td ><input type="text" style="height:50%"/></td><td></td> 
 </tr> 
-<tr><td></td><td colspan="2"><div id="drag"><div class="drag_bg"></div><div class="drag_text">拖动滑块验证</div><div class="handler handler_bg"></div></div></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td><td id="tddrg" colspan="2"><div id="drag"><div class="drag_bg"></div><div class="drag_text">拖动滑块验证</div><div class="handler handler_bg"></div></div></td><td></td></tr>
 
 
 <tr> <td></td>
@@ -123,6 +123,7 @@ function content_5bdf15bb13ce28_87046187 (Smarty_Internal_Template $_smarty_tpl)
  type="text/javascript">
     	el_hdr=$('#el_hdr');
     	el_drg=$('#drag');
+    	el_lgrrg=$('#logorreg');
     	flg_lgrrg=0;
     	function wbdtini(){
     		//共用
@@ -164,7 +165,7 @@ function content_5bdf15bb13ce28_87046187 (Smarty_Internal_Template $_smarty_tpl)
 
     	function logorreg(flg){
     		flg_lgrrg=flg;
-    		el_lgrrg=$('#logorreg');
+    		//el_lgrrg=$('#logorreg');
     		el_zhzh=$('#zhezhao');
     		//alert('drgTop1:'+el_drg.offset().top+',drgLeft1:'+el_drg.offset().left);
     		if(flg==1){
@@ -179,13 +180,24 @@ function content_5bdf15bb13ce28_87046187 (Smarty_Internal_Template $_smarty_tpl)
     		
     		el_zhzh.css('display','block');
     		el_lgrrg.css('display','block');
-    		el_drg.css('display','block');
+
+    		
+    		//$('.handler').css('display','block');
+    		
+    		
+//alert($('#tddrg').offset().left+':tdlft,'+el_drg.offset().left+':divdrgleft,'+$('#tdpwd').offset().left+':tdpwd.left');
+    		
+			el_drg.css('display','block');
+    		$('.handler').css('display','block');
     		
     		el_lft_drg=el_drg.offset().left;
     		el_tp_drg=el_drg.offset().top;
     		$('.handler').offset({top:el_tp_drg,left:el_lft_drg});
     		$('.drag_bg').offset({top:el_tp_drg,left:el_lft_drg});
     		$('.drag_text').offset({top:el_tp_drg,left:el_lft_drg});
+
+//alert(el_drg.width()+':drg.width,');
+
 
     		if((wd_wdth<300 && wd_ht<600) || (wd_wdth<600 && wd_ht<300)){
     			el_lgrrg.css('width','95%');
@@ -281,42 +293,138 @@ DecoupledEditor
  
     	//拖动验证
 		var x,  isMove = false
-		//var drag = $('#drag');
 		
         var handler = el_drg.find('.handler');
         var drag_bg = el_drg.find('.drag_bg');
         var text = el_drg.find('.drag_text');
-        var maxWidth = el_drg.width() - handler.width();  //能滑动的最大间距
+
+        var maxWidth = el_lgrrg.find('tr').width() - handler.width();  //能滑动的最大间距
+        if(maxWidth>230){
+        	maxWidth=215;
+        }
+ //       else{
+ //       	maxWidth=230;
+ //       }
+
+//        //鼠标按下时候的x轴的位置
+//        handler.mousedown(function(e){
+//            isMove = true;
+//            //x = e.pageX - parseInt(handler.css('left'), 10);
+//            x = e.pageX ;
+//            //x=handler.offset().left;
+//            
+//            //alert(el_drg.width()+':eldrg.wdth,'+handler.width()+':hdlr.wdth');
+//        });
+//        
+//        //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+//        $(document).mousemove(function(e){
+//            var _x = e.pageX - x;
+//            //var _x = handler.offset().left; - x;
+//            if(isMove){
+//                if(_x > 0 && _x <= maxWidth){
+//                    handler.css({'left': _x});
+//                    drag_bg.css({'width': _x});
+//                }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
+//                alert(_x);
+//                    dragOk();
+//                    
+//                }
+//            }
+//        }).mouseup(function(e){
+//            isMove = false;
+//            var _x = e.pageX - x;
+//            //var _x = x.pageX - x;
+//            if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+//                handler.css({'left': 0});
+//                drag_bg.css({'width': 0});
+//                
+//            }
+//            
+//        });
         
-        //鼠标按下时候的x轴的位置
-        handler.mousedown(function(e){
-            isMove = true;
-            //x = e.pageX - parseInt(handler.css('left'), 10);
-            //x = e.pageX ;
-            x=handler.pageX;
-        });
+        //a
+ function isPC(){
+           var userAgentInfo = navigator.userAgent; 
+           var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"); 
+           var flag = true; 
+           for (var v = 0; v < Agents.length; v++) { 
+               if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+           } 
+           return flag; 
+}        
+
+        function teini() {
+            if (isPC()) {
+                touchEvents.touchstart = "mousedown";
+                //touchstart = "mousedown";
+                touchEvents.touchmove = "mousemove";
+                touchEvents.touchend = "mouseup";
+            }
+        }
+
+
+var touchEvents = {
+        touchstart: "touchstart",
+        touchmove: "touchmove",
+        touchend: "touchend",
+
+        /**
+         * @desc:判断是否pc设备，若是pc，需要更改touch事件为鼠标事件，否则默认触摸事件
+         */
+        initTouchEvents: function () {
+            if (isPC()) {
+                //this.touchstart = "mousedown";
+                this.touchstart = "mousedown";
+                this.touchmove = "mousemove";
+                this.touchend = "mouseup";
+            }
+        }
+    };
+
+teini();
+
+//alert(isPC()+':ispc,'+touchEvents.touchstart);
+
         
-        //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
-        $(document).mousemove(function(e){
-            //var _x = e.pageX - x;
-            var _x = x.pageX - x;
-            if(isMove){
-                if(_x > 0 && _x <= maxWidth){
-                    handler.css({'left': _x});
-                    drag_bg.css({'width': _x});
-                }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
-                    dragOk();
-                }
-            }
-        }).mouseup(function(e){
-            isMove = false;
-            //var _x = e.pageX - x;
-            var _x = x.pageX - x;
-            if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-                handler.css({'left': 0});
-                drag_bg.css({'width': 0});
-            }
-        });
+               //鼠标按下时候的x轴的位置
+       handler.on(touchEvents.touchstart,function(e){
+           isMove = true;
+           x = e.targetTouches[0].pageX ;
+           e.preventDefault();
+           //alert(el_drg.width()+':eldrg.wdth,'+handler.width()+':hdlr.wdth');
+       });
+       
+       //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+       $(document).on(touchEvents.touchmove,function(e){
+           var _x = e.targetTouches[0].pageX - x;
+           if(isMove){
+               if(_x > 0 && _x <= maxWidth){
+                   handler.css({'left': _x});
+                   drag_bg.css({'width': _x});
+               }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
+                   dragOk();
+               }
+           }
+           e.preventDefault()
+       }).on(touchEvents.touchend,function(e){
+           isMove = false;
+           var _x = e.targetTouches[0].pageX - x;
+           if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+               handler.css({'left': 0});
+               drag_bg.css({'width': 0});
+           }
+           e.preventDefault()
+       });
+
+ 
+ 
+    
+        
+        //b
+        
+        
+        
+        
         
         //清空事件
         function dragOk(){
