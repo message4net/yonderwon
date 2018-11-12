@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-11-11 23:34:09
+/* Smarty version 3.1.32, created on 2018-11-12 01:25:45
   from '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5be8ae6134ad92_50543324',
+  'unifunc' => 'content_5be8c8893b15a2_27369535',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f132f3cafc4a38c38b9148ff115458dbcd1550a8' => 
     array (
       0 => '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl',
-      1 => 1541975641,
+      1 => 1541982336,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5be8ae6134ad92_50543324 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5be8c8893b15a2_27369535 (Smarty_Internal_Template $_smarty_tpl) {
 ?>    </div>
 
     <footer>
@@ -114,16 +114,17 @@ function content_5be8ae6134ad92_50543324 (Smarty_Internal_Template $_smarty_tpl)
  src="<?php echo APP_NAME;?>
 /js/modernizr.js"><?php echo '</script'; ?>
 >
-    <?php echo '<script'; ?>
+    <!--<?php echo '<script'; ?>
  src="<?php echo APP_NAME;?>
 /js/ckeditor.js"><?php echo '</script'; ?>
->
+>-->
 
     <?php echo '<script'; ?>
  type="text/javascript">
     	el_hdr=$('#el_hdr');
     	el_drg=$('#drag');
     	el_lgrrg=$('#logorreg');
+    	el_zhzh=$('#zhezhao');
     	flg_lgrrg=0;
     	function wbdtini(){
     		//共用
@@ -166,7 +167,7 @@ function content_5be8ae6134ad92_50543324 (Smarty_Internal_Template $_smarty_tpl)
     	function logorreg(flg){
     		flg_lgrrg=flg;
     		//el_lgrrg=$('#logorreg');
-    		el_zhzh=$('#zhezhao');
+    		//el_zhzh=$('#zhezhao');
     		//alert('drgTop1:'+el_drg.offset().top+',drgLeft1:'+el_drg.offset().left);
     		if(flg==1){
     			$('#h3tl').html('登陆');
@@ -237,58 +238,58 @@ function content_5be8ae6134ad92_50543324 (Smarty_Internal_Template $_smarty_tpl)
     	}
     	
 
-//  上传适配器，格式官网上有，以一种Promise 的方式。Promise好像是有阻塞的意思在里面。
-class UploadAdapter {
-    constructor(loader) {
-        this.loader = loader;
-    }
-    upload() {
-        return new Promise((resolve, reject) => {
-            const data = new FormData();
-            data.append('upload', this.loader.file);
-            data.append('allowSize', 10);//允许图片上传的大小/兆
-            $.ajax({
-                url: 'index.php?a=comm&m=upl',
-                type: 'POST',
-                data: data,
-                dataType: 'json',
-                processData: false,
-                contentType: false,
-                success: function (data) {
-                    if (data.res) {
-                        resolve({
-                            default: data.url
-                        });
-                    } else {
-                        reject(data.msg);
-                    }
-
-                }
-            });
-           
-        });
-    }
-    abort() {
-    }
-}
-
-DecoupledEditor
-        .create( document.querySelector( '#contact-body' ), {
-            language:"zh-cn"
-        })
-        .then( editor => {
-            const toolbarContainer = document.querySelector( '#contact-toolbar' );
-            toolbarContainer.appendChild( editor.ui.view.toolbar.element );
-            
-            
-           // 这个地方加载了适配器
-            editor.plugins.get('FileRepository').createUploadAdapter = (loader)=>{
-                return new UploadAdapter(loader);
-            };
-        } )
-        .catch( error => {
-            console.error( error );
-        } );
+////  上传适配器，格式官网上有，以一种Promise 的方式。Promise好像是有阻塞的意思在里面。
+//class UploadAdapter {
+//    constructor(loader) {
+//        this.loader = loader;
+//    }
+//    upload() {
+//        return new Promise((resolve, reject) => {
+//            const data = new FormData();
+//            data.append('upload', this.loader.file);
+//            data.append('allowSize', 10);//允许图片上传的大小/兆
+//            $.ajax({
+//                url: 'index.php?a=comm&m=upl',
+//                type: 'POST',
+//                data: data,
+//                dataType: 'json',
+//                processData: false,
+//                contentType: false,
+//                success: function (data) {
+//                    if (data.res) {
+//                        resolve({
+//                            default: data.url
+//                        });
+//                    } else {
+//                        reject(data.msg);
+//                    }
+//
+//                }
+//            });
+//           
+//        });
+//    }
+//    abort() {
+//    }
+//}
+//
+//DecoupledEditor
+//        .create( document.querySelector( '#contact-body' ), {
+//            language:"zh-cn"
+//        })
+//        .then( editor => {
+//            const toolbarContainer = document.querySelector( '#contact-toolbar' );
+//            toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+//            
+//            
+//           // 这个地方加载了适配器
+//            editor.plugins.get('FileRepository').createUploadAdapter = (loader)=>{
+//                return new UploadAdapter(loader);
+//            };
+//        } )
+//        .catch( error => {
+//            console.error( error );
+//        } );
     	
  
     	//拖动验证
@@ -298,123 +299,136 @@ DecoupledEditor
         var drag_bg = el_drg.find('.drag_bg');
         var text = el_drg.find('.drag_text');
 
-        var maxWidth = el_lgrrg.find('tr').width() - handler.width();  //能滑动的最大间距
-        if(maxWidth>230){
-        	maxWidth=215;
+        var maxWidth = el_lgrrg.width() - handler.width();  //能滑动的最大间距
+        if(maxWidth>260){
+        	maxWidth=220;
         }
  //       else{
  //       	maxWidth=230;
  //       }
 
-//        //鼠标按下时候的x轴的位置
-//        handler.mousedown(function(e){
-//            isMove = true;
-//            //x = e.pageX - parseInt(handler.css('left'), 10);
-//            x = e.pageX ;
-//            //x=handler.offset().left;
-//            
-//            //alert(el_drg.width()+':eldrg.wdth,'+handler.width()+':hdlr.wdth');
-//        });
-//        
-//        //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
-//        $(document).mousemove(function(e){
-//            var _x = e.pageX - x;
-//            //var _x = handler.offset().left; - x;
-//            if(isMove){
-//                if(_x > 0 && _x <= maxWidth){
-//                    handler.css({'left': _x});
-//                    drag_bg.css({'width': _x});
-//                }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
-//                alert(_x);
-//                    dragOk();
-//                    
-//                }
-//            }
-//        }).mouseup(function(e){
-//            isMove = false;
-//            var _x = e.pageX - x;
-//            //var _x = x.pageX - x;
-//            if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-//                handler.css({'left': 0});
-//                drag_bg.css({'width': 0});
-//                
-//            }
-//            
-//        });
+        //鼠标按下时候的x轴的位置
+        handler.mousedown(function(e){
+            isMove = true;
+            //x = e.pageX - parseInt(handler.css('left'), 10);
+            x = e.pageX ;
+            //x=handler.offset().left;
+            
+            //alert(maxWidth+':maxWidth');
+        });
+        
+        //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+        $(document).mousemove(function(e){
+            var _x = e.pageX - x;
+            //var _x = handler.offset().left; - x;
+            if(isMove){
+                if(_x >= 0 && _x <= maxWidth){
+                    handler.css({'left': _x});
+                    drag_bg.css({'width': _x});
+                }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
+                //alert(_x);
+                    dragOk();
+                }
+            }
+        }).mouseup(function(e){
+            isMove = false;
+            var _x = e.pageX - x;
+            //var _x = x.pageX - x;
+            if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+                handler.css({'left': 0});
+                drag_bg.css({'width': 0});
+            }
+            
+        });
         
         //a
- function isPC(){
-           var userAgentInfo = navigator.userAgent; 
-           var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"); 
-           var flag = true; 
-           for (var v = 0; v < Agents.length; v++) { 
-               if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
-           } 
-           return flag; 
-}        
-
-        function teini() {
-            if (isPC()) {
-                touchEvents.touchstart = "mousedown";
-                //touchstart = "mousedown";
-                touchEvents.touchmove = "mousemove";
-                touchEvents.touchend = "mouseup";
-            }
-        }
-
-
-var touchEvents = {
-        touchstart: "touchstart",
-        touchmove: "touchmove",
-        touchend: "touchend",
-
-        /**
-         * @desc:判断是否pc设备，若是pc，需要更改touch事件为鼠标事件，否则默认触摸事件
-         */
-        initTouchEvents: function () {
-            if (isPC()) {
-                //this.touchstart = "mousedown";
-                this.touchstart = "mousedown";
-                this.touchmove = "mousemove";
-                this.touchend = "mouseup";
-            }
-        }
-    };
-
-teini();
-
-//alert(isPC()+':ispc,'+touchEvents.touchstart);
-
-        
-               //鼠标按下时候的x轴的位置
-       handler.on(touchEvents.touchstart,function(e){
-           isMove = true;
-           x = e.targetTouches[0].pageX ;
-           e.preventDefault();
-           //alert(el_drg.width()+':eldrg.wdth,'+handler.width()+':hdlr.wdth');
-       });
-       
-       //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
-       $(document).on(touchEvents.touchmove,function(e){
-           var _x = e.targetTouches[0].pageX - x;
-           if(isMove){
-               if(_x > 0 && _x <= maxWidth){
-                   handler.css({'left': _x});
-                   drag_bg.css({'width': _x});
-               }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
-                   dragOk();
-               }
-           }
-           e.preventDefault()
-       }).on(touchEvents.touchend,function(e){
-           isMove = false;
-           var _x = e.targetTouches[0].pageX - x;
-           if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-               handler.css({'left': 0});
-               drag_bg.css({'width': 0});
-           }
-           e.preventDefault()
-       });
+// function isPC(){
+//           var userAgentInfo = navigator.userAgent; 
+//           var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"); 
+//           var flag = true; 
+//           for (var v = 0; v < Agents.length; v++) { 
+//               if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+//           } 
+//           return flag; 
+//}        
+//
+//        function teini() {
+//            if (isPC()) {
+//                touchEvents.touchstart = "mousedown";
+//                //touchstart = "mousedown";
+//                touchEvents.touchmove = "mousemove";
+//                touchEvents.touchend = "mouseup";
+//            }
+//        }
+//
+//
+//var touchEvents = {
+//        touchstart: "touchstart",
+//        touchmove: "touchmove",
+//        touchend: "touchend",
+//
+//        /**
+//         * @desc:判断是否pc设备，若是pc，需要更改touch事件为鼠标事件，否则默认触摸事件
+//         */
+//        initTouchEvents: function () {
+//            if (isPC()) {
+//                //this.touchstart = "mousedown";
+//                this.touchstart = "mousedown";
+//                this.touchmove = "mousemove";
+//                this.touchend = "mouseup";
+//            }
+//        }
+//    };
+//
+//teini();
+//
+////alert(isPC()+':ispc,'+touchEvents.touchend);
+//
+//        
+//               //鼠标按下时候的x轴的位置
+//       handler.on(touchEvents.touchstart,function(e){
+//           isMove = true;
+//           if (isPC()){
+//          	 var _x = e.pageX ;
+//           }else{
+//           	 var x = e.originalEvent.touches[0].pageX ;
+//           }
+//           
+//           
+//           e.preventDefault();
+//           //alert(el_drg.width()+':eldrg.wdth,'+handler.width()+':hdlr.wdth');
+//       });
+//       
+//       //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+//       $(document).on(touchEvents.touchmove,function(e){
+//           if (isPC()){
+//          	 var _x = e.pageX - x;
+//           }else{
+//           	var _x = e.originalEvent.touches[0].pageX - x;
+//           }
+//           if(isMove){
+//               if(_x > 0 && _x <= maxWidth){
+//                   handler.css({'left': _x});
+//                   drag_bg.css({'width': _x});
+//               }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
+//                   dragOk();
+//               }
+//           }
+//           e.preventDefault();
+//       }).on(touchEvents.touchend,function(e){
+//           isMove = false;
+//           if (isPC()){
+//          	 var _x = e.pageX - x;
+//           }else{
+//           	var _x = e.originalEvent.touches[0].pageX - x;
+//           }
+//           if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+//               handler.css({'left': 0});
+//               drag_bg.css({'width': 0});
+//           }
+//          e.preventDefault();
+//          //alert('aaa');
+//       });
 
  
  

@@ -82,12 +82,13 @@
     <script src="trth/js/jquery.min.js"></script>
     <script src="trth/js/bootstrap.min.js"></script>
     <script src="trth/js/modernizr.js"></script>
-    <script src="trth/js/ckeditor.js"></script>
+    <!--<script src="trth/js/ckeditor.js"></script>-->
 
     <script type="text/javascript">
     	el_hdr=$('#el_hdr');
     	el_drg=$('#drag');
     	el_lgrrg=$('#logorreg');
+    	el_zhzh=$('#zhezhao');
     	flg_lgrrg=0;
     	function wbdtini(){ldelim}
     		//共用
@@ -130,7 +131,7 @@
     	function logorreg(flg){ldelim}
     		flg_lgrrg=flg;
     		//el_lgrrg=$('#logorreg');
-    		el_zhzh=$('#zhezhao');
+    		//el_zhzh=$('#zhezhao');
     		//alert('drgTop1:'+el_drg.offset().top+',drgLeft1:'+el_drg.offset().left);
     		if(flg==1){ldelim}
     			$('#h3tl').html('登陆');
@@ -201,58 +202,58 @@
     	{rdelim}
     	
 
-//  上传适配器，格式官网上有，以一种Promise 的方式。Promise好像是有阻塞的意思在里面。
-class UploadAdapter {ldelim}
-    constructor(loader) {ldelim}
-        this.loader = loader;
-    {rdelim}
-    upload() {ldelim}
-        return new Promise((resolve, reject) => {ldelim}
-            const data = new FormData();
-            data.append('upload', this.loader.file);
-            data.append('allowSize', 10);//允许图片上传的大小/兆
-            $.ajax({ldelim}
-                url: 'index.php?a=comm&m=upl',
-                type: 'POST',
-                data: data,
-                dataType: 'json',
-                processData: false,
-                contentType: false,
-                success: function (data) {ldelim}
-                    if (data.res) {ldelim}
-                        resolve({ldelim}
-                            default: data.url
-                        {rdelim});
-                    {rdelim} else {ldelim}
-                        reject(data.msg);
-                    {rdelim}
-
-                {rdelim}
-            {rdelim});
-           
-        {rdelim});
-    {rdelim}
-    abort() {ldelim}
-    {rdelim}
-{rdelim}
-
-DecoupledEditor
-        .create( document.querySelector( '#contact-body' ), {ldelim}
-            language:"zh-cn"
-        {rdelim})
-        .then( editor => {ldelim}
-            const toolbarContainer = document.querySelector( '#contact-toolbar' );
-            toolbarContainer.appendChild( editor.ui.view.toolbar.element );
-            
-            
-           // 这个地方加载了适配器
-            editor.plugins.get('FileRepository').createUploadAdapter = (loader)=>{ldelim}
-                return new UploadAdapter(loader);
-            {rdelim};
-        {rdelim} )
-        .catch( error => {ldelim}
-            console.error( error );
-        {rdelim} );
+////  上传适配器，格式官网上有，以一种Promise 的方式。Promise好像是有阻塞的意思在里面。
+//class UploadAdapter {ldelim}
+//    constructor(loader) {ldelim}
+//        this.loader = loader;
+//    {rdelim}
+//    upload() {ldelim}
+//        return new Promise((resolve, reject) => {ldelim}
+//            const data = new FormData();
+//            data.append('upload', this.loader.file);
+//            data.append('allowSize', 10);//允许图片上传的大小/兆
+//            $.ajax({ldelim}
+//                url: 'index.php?a=comm&m=upl',
+//                type: 'POST',
+//                data: data,
+//                dataType: 'json',
+//                processData: false,
+//                contentType: false,
+//                success: function (data) {ldelim}
+//                    if (data.res) {ldelim}
+//                        resolve({ldelim}
+//                            default: data.url
+//                        {rdelim});
+//                    {rdelim} else {ldelim}
+//                        reject(data.msg);
+//                    {rdelim}
+//
+//                {rdelim}
+//            {rdelim});
+//           
+//        {rdelim});
+//    {rdelim}
+//    abort() {ldelim}
+//    {rdelim}
+//{rdelim}
+//
+//DecoupledEditor
+//        .create( document.querySelector( '#contact-body' ), {ldelim}
+//            language:"zh-cn"
+//        {rdelim})
+//        .then( editor => {ldelim}
+//            const toolbarContainer = document.querySelector( '#contact-toolbar' );
+//            toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+//            
+//            
+//           // 这个地方加载了适配器
+//            editor.plugins.get('FileRepository').createUploadAdapter = (loader)=>{ldelim}
+//                return new UploadAdapter(loader);
+//            {rdelim};
+//        {rdelim} )
+//        .catch( error => {ldelim}
+//            console.error( error );
+//        {rdelim} );
     	
  
     	//拖动验证
@@ -262,123 +263,136 @@ DecoupledEditor
         var drag_bg = el_drg.find('.drag_bg');
         var text = el_drg.find('.drag_text');
 
-        var maxWidth = el_lgrrg.find('tr').width() - handler.width();  //能滑动的最大间距
-        if(maxWidth>230){ldelim}
-        	maxWidth=215;
+        var maxWidth = el_lgrrg.width() - handler.width();  //能滑动的最大间距
+        if(maxWidth>260){ldelim}
+        	maxWidth=220;
         {rdelim}
  //       else{ldelim}
  //       	maxWidth=230;
  //       {rdelim}
 
-//        //鼠标按下时候的x轴的位置
-//        handler.mousedown(function(e){ldelim}
-//            isMove = true;
-//            //x = e.pageX - parseInt(handler.css('left'), 10);
-//            x = e.pageX ;
-//            //x=handler.offset().left;
-//            
-//            //alert(el_drg.width()+':eldrg.wdth,'+handler.width()+':hdlr.wdth');
-//        {rdelim});
-//        
-//        //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
-//        $(document).mousemove(function(e){ldelim}
-//            var _x = e.pageX - x;
-//            //var _x = handler.offset().left; - x;
-//            if(isMove){ldelim}
-//                if(_x > 0 && _x <= maxWidth){ldelim}
-//                    handler.css({ldelim}'left': _x{rdelim});
-//                    drag_bg.css({ldelim}'width': _x{rdelim});
-//                {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
-//                alert(_x);
-//                    dragOk();
-//                    
-//                {rdelim}
-//            {rdelim}
-//        {rdelim}).mouseup(function(e){ldelim}
-//            isMove = false;
-//            var _x = e.pageX - x;
-//            //var _x = x.pageX - x;
-//            if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-//                handler.css({ldelim}'left': 0{rdelim});
-//                drag_bg.css({ldelim}'width': 0{rdelim});
-//                
-//            {rdelim}
-//            
-//        {rdelim});
+        //鼠标按下时候的x轴的位置
+        handler.mousedown(function(e){ldelim}
+            isMove = true;
+            //x = e.pageX - parseInt(handler.css('left'), 10);
+            x = e.pageX ;
+            //x=handler.offset().left;
+            
+            //alert(maxWidth+':maxWidth');
+        {rdelim});
+        
+        //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+        $(document).mousemove(function(e){ldelim}
+            var _x = e.pageX - x;
+            //var _x = handler.offset().left; - x;
+            if(isMove){ldelim}
+                if(_x >= 0 && _x <= maxWidth){ldelim}
+                    handler.css({ldelim}'left': _x{rdelim});
+                    drag_bg.css({ldelim}'width': _x{rdelim});
+                {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+                //alert(_x);
+                    dragOk();
+                {rdelim}
+            {rdelim}
+        {rdelim}).mouseup(function(e){ldelim}
+            isMove = false;
+            var _x = e.pageX - x;
+            //var _x = x.pageX - x;
+            if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+                handler.css({ldelim}'left': 0{rdelim});
+                drag_bg.css({ldelim}'width': 0{rdelim});
+            {rdelim}
+            
+        {rdelim});
         
         //a
- function isPC(){ldelim}
-           var userAgentInfo = navigator.userAgent; 
-           var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"); 
-           var flag = true; 
-           for (var v = 0; v < Agents.length; v++) {ldelim} 
-               if (userAgentInfo.indexOf(Agents[v]) > 0) {ldelim} flag = false; break; {rdelim}
-           {rdelim} 
-           return flag; 
-{rdelim}        
-
-        function teini() {ldelim}
-            if (isPC()) {ldelim}
-                touchEvents.touchstart = "mousedown";
-                //touchstart = "mousedown";
-                touchEvents.touchmove = "mousemove";
-                touchEvents.touchend = "mouseup";
-            {rdelim}
-        {rdelim}
-
-
-var touchEvents = {ldelim}
-        touchstart: "touchstart",
-        touchmove: "touchmove",
-        touchend: "touchend",
-
-        /**
-         * @desc:判断是否pc设备，若是pc，需要更改touch事件为鼠标事件，否则默认触摸事件
-         */
-        initTouchEvents: function () {ldelim}
-            if (isPC()) {ldelim}
-                //this.touchstart = "mousedown";
-                this.touchstart = "mousedown";
-                this.touchmove = "mousemove";
-                this.touchend = "mouseup";
-            {rdelim}
-        {rdelim}
-    {rdelim};
-
-teini();
-
-//alert(isPC()+':ispc,'+touchEvents.touchstart);
-
-        
-               //鼠标按下时候的x轴的位置
-       handler.on(touchEvents.touchstart,function(e){ldelim}
-           isMove = true;
-           x = e.targetTouches[0].pageX ;
-           e.preventDefault();
-           //alert(el_drg.width()+':eldrg.wdth,'+handler.width()+':hdlr.wdth');
-       {rdelim});
-       
-       //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
-       $(document).on(touchEvents.touchmove,function(e){ldelim}
-           var _x = e.targetTouches[0].pageX - x;
-           if(isMove){ldelim}
-               if(_x > 0 && _x <= maxWidth){ldelim}
-                   handler.css({ldelim}'left': _x{rdelim});
-                   drag_bg.css({ldelim}'width': _x{rdelim});
-               {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
-                   dragOk();
-               {rdelim}
-           {rdelim}
-           e.preventDefault()
-       {rdelim}).on(touchEvents.touchend,function(e){ldelim}
-           isMove = false;
-           var _x = e.targetTouches[0].pageX - x;
-           if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-               handler.css({ldelim}'left': 0{rdelim});
-               drag_bg.css({ldelim}'width': 0{rdelim});
-           {rdelim}
-           e.preventDefault()
-       {rdelim});
+// function isPC(){ldelim}
+//           var userAgentInfo = navigator.userAgent; 
+//           var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"); 
+//           var flag = true; 
+//           for (var v = 0; v < Agents.length; v++) {ldelim} 
+//               if (userAgentInfo.indexOf(Agents[v]) > 0) {ldelim} flag = false; break; {rdelim}
+//           {rdelim} 
+//           return flag; 
+//{rdelim}        
+//
+//        function teini() {ldelim}
+//            if (isPC()) {ldelim}
+//                touchEvents.touchstart = "mousedown";
+//                //touchstart = "mousedown";
+//                touchEvents.touchmove = "mousemove";
+//                touchEvents.touchend = "mouseup";
+//            {rdelim}
+//        {rdelim}
+//
+//
+//var touchEvents = {ldelim}
+//        touchstart: "touchstart",
+//        touchmove: "touchmove",
+//        touchend: "touchend",
+//
+//        /**
+//         * @desc:判断是否pc设备，若是pc，需要更改touch事件为鼠标事件，否则默认触摸事件
+//         */
+//        initTouchEvents: function () {ldelim}
+//            if (isPC()) {ldelim}
+//                //this.touchstart = "mousedown";
+//                this.touchstart = "mousedown";
+//                this.touchmove = "mousemove";
+//                this.touchend = "mouseup";
+//            {rdelim}
+//        {rdelim}
+//    {rdelim};
+//
+//teini();
+//
+////alert(isPC()+':ispc,'+touchEvents.touchend);
+//
+//        
+//               //鼠标按下时候的x轴的位置
+//       handler.on(touchEvents.touchstart,function(e){ldelim}
+//           isMove = true;
+//           if (isPC()){ldelim}
+//          	 var _x = e.pageX ;
+//           {rdelim}else{ldelim}
+//           	 var x = e.originalEvent.touches[0].pageX ;
+//           {rdelim}
+//           
+//           
+//           e.preventDefault();
+//           //alert(el_drg.width()+':eldrg.wdth,'+handler.width()+':hdlr.wdth');
+//       {rdelim});
+//       
+//       //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+//       $(document).on(touchEvents.touchmove,function(e){ldelim}
+//           if (isPC()){ldelim}
+//          	 var _x = e.pageX - x;
+//           {rdelim}else{ldelim}
+//           	var _x = e.originalEvent.touches[0].pageX - x;
+//           {rdelim}
+//           if(isMove){ldelim}
+//               if(_x > 0 && _x <= maxWidth){ldelim}
+//                   handler.css({ldelim}'left': _x{rdelim});
+//                   drag_bg.css({ldelim}'width': _x{rdelim});
+//               {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+//                   dragOk();
+//               {rdelim}
+//           {rdelim}
+//           e.preventDefault();
+//       {rdelim}).on(touchEvents.touchend,function(e){ldelim}
+//           isMove = false;
+//           if (isPC()){ldelim}
+//          	 var _x = e.pageX - x;
+//           {rdelim}else{ldelim}
+//           	var _x = e.originalEvent.touches[0].pageX - x;
+//           {rdelim}
+//           if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+//               handler.css({ldelim}'left': 0{rdelim});
+//               drag_bg.css({ldelim}'width': 0{rdelim});
+//           {rdelim}
+//          e.preventDefault();
+//          //alert('aaa');
+//       {rdelim});
 
  
  
