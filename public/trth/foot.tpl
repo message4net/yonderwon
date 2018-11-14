@@ -256,7 +256,58 @@
 //        {rdelim} );
     	
  
-    	//拖动验证
+ //   	//拖动验证
+//		var x,  isMove = false
+//		
+ //       var handler = el_drg.find('.handler');
+ //       var drag_bg = el_drg.find('.drag_bg');
+ //       var text = el_drg.find('.drag_text');
+ //
+ //       var maxWidth = el_lgrrg.width() - handler.width();  //能滑动的最大间距
+ //       if(maxWidth>260){ldelim}
+ //       	maxWidth=220;
+ //       {rdelim}
+ ////       else{ldelim}
+ ////       	maxWidth=230;
+ ////       {rdelim}
+ //
+ //       //鼠标按下时候的x轴的位置
+ //       handler.mousedown(function(e){ldelim}
+ //           isMove = true;
+ //           //x = e.pageX - parseInt(handler.css('left'), 10);
+ //           x = e.pageX ;
+ //           //x=handler.offset().left;
+ //           
+ //           //alert(maxWidth+':maxWidth');
+ //       {rdelim});
+ //       
+ //       //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+ //       $(document).mousemove(function(e){ldelim}
+ //           var _x = e.pageX - x;
+ //           //var _x = handler.offset().left; - x;
+ //           if(isMove){ldelim}
+ //               if(_x >= 0 && _x <= maxWidth){ldelim}
+ //                   handler.css({ldelim}'left': _x{rdelim});
+ //                   drag_bg.css({ldelim}'width': _x{rdelim});
+ //               {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+ //               //alert(_x);
+ //                   dragOk();
+ //               {rdelim}
+ //           {rdelim}
+ //       {rdelim}).mouseup(function(e){ldelim}
+ //           isMove = false;
+ //           var _x = e.pageX - x;
+ //           //var _x = x.pageX - x;
+ //           if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+ //               handler.css({ldelim}'left': 0{rdelim});
+ //               drag_bg.css({ldelim}'width': 0{rdelim});
+ //           {rdelim}
+ //           
+ //       {rdelim});
+        
+        
+        //x
+           	//拖动验证
 		var x,  isMove = false
 		
         var handler = el_drg.find('.handler');
@@ -267,43 +318,62 @@
         if(maxWidth>260){ldelim}
         	maxWidth=220;
         {rdelim}
- //       else{ldelim}
- //       	maxWidth=230;
- //       {rdelim}
 
         //鼠标按下时候的x轴的位置
-        handler.mousedown(function(e){ldelim}
+        handler.on('mousedown',function(e){ldelim}
             isMove = true;
-            //x = e.pageX - parseInt(handler.css('left'), 10);
             x = e.pageX ;
-            //x=handler.offset().left;
-            
-            //alert(maxWidth+':maxWidth');
+        {rdelim}).on('touchstart',function(e){ldelim}
+            isMove = true;
+            x = e.originalEvent.touches[0].pageX ;
         {rdelim});
         
         //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
-        $(document).mousemove(function(e){ldelim}
+        $(document).on('mousemove',function(e){ldelim}
             var _x = e.pageX - x;
-            //var _x = handler.offset().left; - x;
+
             if(isMove){ldelim}
                 if(_x >= 0 && _x <= maxWidth){ldelim}
                     handler.css({ldelim}'left': _x{rdelim});
                     drag_bg.css({ldelim}'width': _x{rdelim});
                 {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
-                //alert(_x);
                     dragOk();
                 {rdelim}
             {rdelim}
-        {rdelim}).mouseup(function(e){ldelim}
+        {rdelim}).on('mouseup',function(e){ldelim}
             isMove = false;
             var _x = e.pageX - x;
-            //var _x = x.pageX - x;
             if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
                 handler.css({ldelim}'left': 0{rdelim});
                 drag_bg.css({ldelim}'width': 0{rdelim});
             {rdelim}
-            
-        {rdelim});
+        {rdelim}).on('touchmove',function(e){ldelim}
+           e.preventDefault();
+           var _x = e.originalEvent.touches[0].pageX - x;
+        
+           if(isMove){ldelim}
+               if(_x > 0 && _x <= maxWidth){ldelim}
+                   handler.css({ldelim}'left': _x{rdelim});
+                   drag_bg.css({ldelim}'width': _x{rdelim});
+               {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+                   dragOk();
+               {rdelim}
+           {rdelim}
+        
+        {rdelim}).on('touchend',function(e){ldelim}
+           e.preventDefault();
+           isMove = false;
+           var _x = e.originalEvent.touches[0].pageX - x;
+           if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+               handler.css({ldelim}'left': 0{rdelim});
+               drag_bg.css({ldelim}'width': 0{rdelim});
+           {rdelim}
+        
+        {rdelim})
+        
+        //;
+        
+        //y
         
         //a
 // function isPC(){ldelim}

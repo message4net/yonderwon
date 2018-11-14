@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-11-12 01:25:45
+/* Smarty version 3.1.32, created on 2018-11-14 01:13:12
   from '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5be8c8893b15a2_27369535',
+  'unifunc' => 'content_5beb6898616373_48976598',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f132f3cafc4a38c38b9148ff115458dbcd1550a8' => 
     array (
       0 => '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl',
-      1 => 1541982336,
+      1 => 1542154284,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5be8c8893b15a2_27369535 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5beb6898616373_48976598 (Smarty_Internal_Template $_smarty_tpl) {
 ?>    </div>
 
     <footer>
@@ -292,7 +292,58 @@ function content_5be8c8893b15a2_27369535 (Smarty_Internal_Template $_smarty_tpl)
 //        } );
     	
  
-    	//拖动验证
+ //   	//拖动验证
+//		var x,  isMove = false
+//		
+ //       var handler = el_drg.find('.handler');
+ //       var drag_bg = el_drg.find('.drag_bg');
+ //       var text = el_drg.find('.drag_text');
+ //
+ //       var maxWidth = el_lgrrg.width() - handler.width();  //能滑动的最大间距
+ //       if(maxWidth>260){
+ //       	maxWidth=220;
+ //       }
+ ////       else{
+ ////       	maxWidth=230;
+ ////       }
+ //
+ //       //鼠标按下时候的x轴的位置
+ //       handler.mousedown(function(e){
+ //           isMove = true;
+ //           //x = e.pageX - parseInt(handler.css('left'), 10);
+ //           x = e.pageX ;
+ //           //x=handler.offset().left;
+ //           
+ //           //alert(maxWidth+':maxWidth');
+ //       });
+ //       
+ //       //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+ //       $(document).mousemove(function(e){
+ //           var _x = e.pageX - x;
+ //           //var _x = handler.offset().left; - x;
+ //           if(isMove){
+ //               if(_x >= 0 && _x <= maxWidth){
+ //                   handler.css({'left': _x});
+ //                   drag_bg.css({'width': _x});
+ //               }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
+ //               //alert(_x);
+ //                   dragOk();
+ //               }
+ //           }
+ //       }).mouseup(function(e){
+ //           isMove = false;
+ //           var _x = e.pageX - x;
+ //           //var _x = x.pageX - x;
+ //           if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+ //               handler.css({'left': 0});
+ //               drag_bg.css({'width': 0});
+ //           }
+ //           
+ //       });
+        
+        
+        //x
+           	//拖动验证
 		var x,  isMove = false
 		
         var handler = el_drg.find('.handler');
@@ -303,43 +354,62 @@ function content_5be8c8893b15a2_27369535 (Smarty_Internal_Template $_smarty_tpl)
         if(maxWidth>260){
         	maxWidth=220;
         }
- //       else{
- //       	maxWidth=230;
- //       }
 
         //鼠标按下时候的x轴的位置
-        handler.mousedown(function(e){
+        handler.on('mousedown',function(e){
             isMove = true;
-            //x = e.pageX - parseInt(handler.css('left'), 10);
             x = e.pageX ;
-            //x=handler.offset().left;
-            
-            //alert(maxWidth+':maxWidth');
+        }).on('touchstart',function(e){
+            isMove = true;
+            x = e.originalEvent.touches[0].pageX ;
         });
         
         //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
-        $(document).mousemove(function(e){
+        $(document).on('mousemove',function(e){
             var _x = e.pageX - x;
-            //var _x = handler.offset().left; - x;
+
             if(isMove){
                 if(_x >= 0 && _x <= maxWidth){
                     handler.css({'left': _x});
                     drag_bg.css({'width': _x});
                 }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
-                //alert(_x);
                     dragOk();
                 }
             }
-        }).mouseup(function(e){
+        }).on('mouseup',function(e){
             isMove = false;
             var _x = e.pageX - x;
-            //var _x = x.pageX - x;
             if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
                 handler.css({'left': 0});
                 drag_bg.css({'width': 0});
             }
-            
-        });
+        }).on('touchmove',function(e){
+           e.preventDefault();
+           var _x = e.originalEvent.touches[0].pageX - x;
+        
+           if(isMove){
+               if(_x > 0 && _x <= maxWidth){
+                   handler.css({'left': _x});
+                   drag_bg.css({'width': _x});
+               }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
+                   dragOk();
+               }
+           }
+        
+        }).on('touchend',function(e){
+           e.preventDefault();
+           isMove = false;
+           var _x = e.originalEvent.touches[0].pageX - x;
+           if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+               handler.css({'left': 0});
+               drag_bg.css({'width': 0});
+           }
+        
+        })
+        
+        //;
+        
+        //y
         
         //a
 // function isPC(){
