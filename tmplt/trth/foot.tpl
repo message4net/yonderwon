@@ -60,9 +60,15 @@
 <td ><input type="text" style="height:50%"/></td><td></td> 
 </tr> 
 <tr><td>&nbsp;&nbsp;&nbsp;</td>
+<<<<<<< HEAD
         <td id="tddrg" colspan="2"><div id="drag"><div class="drag_bg"></div>
                 <div class="drag_text">拖动滑块验证</div><div class="handler handler_bg"></div></div>
         </td><td></td></tr>
+=======
+	<td id="tddrg" colspan="2"><div id="drag"><div class="drag_bg"></div>
+		<div class="drag_text">拖动滑块验证</div><div class="handler handler_bg"></div></div>
+	</td><td></td></tr>
+>>>>>>> 720657e4d75e187df6e81707ecab85783fc64c0d
 <tr> <td></td>
 <td colspan="2"><div style="text-align:center"><a id="lgrrgsbmttl" href="javascript:;">提交</a></div></td><td></td>	 
 </tr> 
@@ -82,7 +88,11 @@
     	el_lgrrg=$('#logorreg');
     	el_zhzh=$('#zhezhao');
     	flg_lgrrg=0;
+<<<<<<< HEAD
 		flg_drg=0;
+=======
+    	flg_drg=0;
+>>>>>>> 720657e4d75e187df6e81707ecab85783fc64c0d
     	function wbdtini(){ldelim}
     		//共用
     		wd_ht=$(window).height();
@@ -98,7 +108,11 @@
     		wd_wdth=$(window).width();
     		el_lft_drg=el_drg.offset().left;
     		el_tp_drg=el_drg.offset().top;
+<<<<<<< HEAD
     		
+=======
+
+>>>>>>> 720657e4d75e187df6e81707ecab85783fc64c0d
     	{rdelim}
     	
     	wbdtini();
@@ -128,6 +142,7 @@
     			$('#lgrrgatl').attr('onclick','logorreg(1)');
     		{rdelim}
 
+<<<<<<< HEAD
     
                 if(flg_lgrrg!=flg){ldelim}
     
@@ -159,6 +174,32 @@
     
     
 
+=======
+    		
+    		if(flg_lgrrg!=flg){ldelim}
+    			
+    			flg_lgrrg=flg;
+    		
+	    		el_zhzh.css('display','block');
+	    		el_lgrrg.css('display','block');
+				el_drg.css('display','block');
+	    		$('.handler').css('display','block');
+	    		el_lft_drg=el_drg.offset().left;
+	    		el_tp_drg=el_drg.offset().top;
+	    		$('.handler').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
+	    		$('.drag_bg').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
+	    		$('.drag_text').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
+            	
+			{rdelim}
+			
+			
+				text.text('拖动滑块验证');
+    			handler.addClass('handler_bg').removeClass('handler_ok_bg');
+	    		handler.css({ldelim}'left': 0{rdelim});
+	            drag_bg.css({ldelim}'width': 0{rdelim});
+	            el_drg.css({ldelim}'color': '#fff'{rdelim});
+            	flg_drg=0;
+>>>>>>> 720657e4d75e187df6e81707ecab85783fc64c0d
 
 
     		if((wd_wdth<300 && wd_ht<600) || (wd_wdth<600 && wd_ht<300)){ldelim}
@@ -188,10 +229,11 @@
     			el_zhzh.offset({ldelim}top:bd_ht-el_ht_zhzh,left:0{rdelim});
     		{rdelim}
 
-    		
+
     	{rdelim}
     	
     	function lgrrgx(){ldelim}
+<<<<<<< HEAD
 
     		flg_lgrrg=0;
     		el_zhzh.css('display','none');
@@ -199,12 +241,26 @@
                 text.text('拖动滑块验证');
                 handler.addClass('handler_bg').removeClass('handler_ok_bg');
                 handler.css({ldelim}'left': 0{rdelim});
+=======
+    	
+    		flg_lgrrg=0;
+    		el_zhzh.css('display','none');
+    		el_lgrrg.css('display','none');
+    		text.text('拖动滑块验证');
+    		handler.addClass('handler_bg').removeClass('handler_ok_bg');
+    		handler.css({ldelim}'left': 0{rdelim});
+>>>>>>> 720657e4d75e187df6e81707ecab85783fc64c0d
             drag_bg.css({ldelim}'width': 0{rdelim});
             el_drg.css({ldelim}'color': '#fff'{rdelim});
             flg_drg=0;
     	{rdelim}
+<<<<<<< HEAD
     	
         //拖动验证
+=======
+
+       	//拖动验证
+>>>>>>> 720657e4d75e187df6e81707ecab85783fc64c0d
 		var x,  isMove = false
 		
         var handler = el_drg.find('.handler');
@@ -216,6 +272,7 @@
         	maxWidth=220;
         {rdelim}
 
+<<<<<<< HEAD
                 //鼠标    按下时候的x轴的位置     指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
                 handler
                         .on('mousedown',function(e){ldelim}
@@ -285,6 +342,78 @@
         //清空事件
         function dragOk(){ldelim}
 	    flg_drg=1;
+=======
+	        
+	        //鼠标    按下时候的x轴的位置     指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
+	        handler
+		        .on('mousedown',function(e){ldelim}
+		        	if(flg_drg==0){ldelim}
+		            	isMove = true;
+		            	x = e.pageX ;
+		            {rdelim}
+		        {rdelim})
+		        .on('touchstart',function(e){ldelim}
+		        	if(flg_drg==0){ldelim}
+			            isMove = true;
+			            x = e.originalEvent.touches[0].pageX ;
+		            {rdelim}
+		        {rdelim})
+		        .on('mousemove',function(e){ldelim}
+			        if(flg_drg==0){ldelim}
+			            var _x = e.pageX - x;
+			
+			            if(isMove){ldelim}
+			                if(_x >= 0 && _x <= maxWidth){ldelim}
+			                    handler.css({ldelim}'left': _x{rdelim});
+			                    drag_bg.css({ldelim}'width': _x{rdelim});
+			                {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+			                    dragOk();
+			                {rdelim}
+			            {rdelim}
+			        {rdelim}
+		        {rdelim})
+		        .on('mouseup',function(e){ldelim}
+		        	if(flg_drg==0){ldelim}
+			            isMove = false;
+			            var _x = e.pageX - x;
+			            if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+			                handler.css({ldelim}'left': 0{rdelim});
+			                drag_bg.css({ldelim}'width': 0{rdelim});
+			            {rdelim}
+			        {rdelim}
+		        {rdelim})
+		        .on('touchmove',function(e){ldelim}
+		           e.preventDefault();
+		           if(flg_drg==0){ldelim}
+			           var _x = e.originalEvent.touches[0].pageX - x;
+			        
+			           if(isMove){ldelim}
+			               if(_x > 0 && _x <= maxWidth){ldelim}
+			                   handler.css({ldelim}'left': _x{rdelim});
+			                   drag_bg.css({ldelim}'width': _x{rdelim});
+			               {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+			                   dragOk();
+			               {rdelim}
+			           {rdelim}
+		        	{rdelim}
+		        {rdelim})
+		        .on('touchend',function(e){ldelim}
+		           e.preventDefault();
+		           if(flg_drg==0){ldelim}
+			           isMove = false;
+			           var _x = e.originalEvent.changedTouches[0].pageX - x;
+			           if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+			               handler.css({ldelim}'left': 0{rdelim});
+			               drag_bg.css({ldelim}'width': 0{rdelim});
+			           {rdelim}
+		        	{rdelim}
+		        {rdelim});
+
+        
+        //清空事件
+        function dragOk(){ldelim}
+        	flg_drg=1;
+>>>>>>> 720657e4d75e187df6e81707ecab85783fc64c0d
             handler.removeClass('handler_bg').addClass('handler_ok_bg');
             text.text('验证通过');
             el_drg.css({ldelim}'color': '#fff'{rdelim});
