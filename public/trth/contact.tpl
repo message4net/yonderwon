@@ -27,6 +27,14 @@
             </div>        
         </div>
 
+<style>
+            .ck-editor__editable {ldelim}
+                min-height: 200px;
+            {rdelim}
+
+            #contact-toolbar {ldelim}margin-top:15px{rdelim}
+            #contact-body {ldelim}border-right:1px solid grey;border-left:1px solid grey;border-bottom:1px solid grey; {rdelim}
+</style>
 
 <script src="trth/js/ckeditor.js"></script>
 <script type="text/javascript">

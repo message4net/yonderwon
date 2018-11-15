@@ -1387,7 +1387,7 @@ position:absolute;
 z-index:9001; 
 background:#ccc; 
 width:100%; 
-height:100%; 
+height:120%; 
 opacity: 0.8; 
 filter:alpha(opacity=80); 
  display:none;   
@@ -1438,6 +1438,8 @@ font-weight:bold;
     height: 22px;
     border: 1px solid #ccc;
     cursor: move;
+    
+    margin-top:-24px;
 }
 .handler_bg{
     background: #fff no-repeat center;
@@ -1462,5 +1464,7 @@ font-weight:bold;
     user-select: none;
     -o-user-select:none;
     -ms-user-select:none; 
+    
+    margin-top:-24px;
 }
 
