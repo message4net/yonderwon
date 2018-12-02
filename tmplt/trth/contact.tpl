@@ -31,11 +31,7 @@
             .ck-editor__editable {ldelim}
                 min-height: 200px;
             {rdelim}
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> 720657e4d75e187df6e81707ecab85783fc64c0d
             #contact-toolbar {ldelim}margin-top:15px{rdelim}
             #contact-body {ldelim}border-right:1px solid grey;border-left:1px solid grey;border-bottom:1px solid grey; {rdelim}
 </style>
