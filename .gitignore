@@ -1,5 +1,6 @@
 /public/
 ##/.git/
-##/.settings/
-##.buildpath
-##.project
+/.settings/
+.buildpath
+.project
+/comm/cfg/self.cfg.php
