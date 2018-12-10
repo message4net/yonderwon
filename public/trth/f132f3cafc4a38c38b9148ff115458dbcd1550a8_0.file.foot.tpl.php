@@ -1,4 +1,27 @@
-    </div>
+<?php
+/* Smarty version 3.1.32, created on 2018-12-10 16:22:59
+  from '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.32',
+  'unifunc' => 'content_5c0e84d398f8a3_78707866',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'f132f3cafc4a38c38b9148ff115458dbcd1550a8' => 
+    array (
+      0 => '/Users/fanyongdi/Documents/git/yonderwon/tmplt/trth/foot.tpl',
+      1 => 1542633925,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5c0e84d398f8a3_78707866 (Smarty_Internal_Template $_smarty_tpl) {
+?>    </div>
 
     <footer>
         <div class="widewrapper footer">
@@ -71,19 +94,32 @@
 
 </div>
     
-    <script src="trth/js/jquery.min.js"></script>
-    <script src="trth/js/bootstrap.min.js"></script>
-    <script src="trth/js/modernizr.js"></script>
-    <!--<script src="trth/js/ckeditor.js"></script>-->
+    <?php echo '<script'; ?>
+ src="<?php echo APP_NAME;?>
+/js/jquery.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="<?php echo APP_NAME;?>
+/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="<?php echo APP_NAME;?>
+/js/modernizr.js"><?php echo '</script'; ?>
+>
+    <!--<?php echo '<script'; ?>
+ src="<?php echo APP_NAME;?>
+/js/ckeditor.js"><?php echo '</script'; ?>
+>-->
 
-    <script type="text/javascript">
+    <?php echo '<script'; ?>
+ type="text/javascript">
     	el_hdr=$('#el_hdr');
     	el_drg=$('#drag');
     	el_lgrrg=$('#logorreg');
     	el_zhzh=$('#zhezhao');
     	flg_lgrrg=0;
 		flg_drg=0;
-    	function wbdtini(){ldelim}
+    	function wbdtini(){
     		//共用
     		wd_ht=$(window).height();
     		scrll_tp=$(document).scrollTop();
@@ -98,36 +134,36 @@
     		wd_wdth=$(window).width();
     		el_lft_drg=el_drg.offset().left;
     		el_tp_drg=el_drg.offset().top;
-    	{rdelim}
+    	}
     	
     	wbdtini();
     	
-    	$(window).on('resize scroll',function(){ldelim}
+    	$(window).on('resize scroll',function(){
     		wbdtini();
-    		if(scrll_tp>=el_ht_hd){ldelim}
-    			if(2*el_ht_hd<wd_ht && 2*el_ht_hd<bd_ht){ldelim}
-    				el_hdr.offset({ldelim}top:scrll_tp,left:0{rdelim});
-    			{rdelim}
-    		{rdelim}else{ldelim}
-    			el_hdr.offset({ldelim}top:0,left:0{rdelim});
-    		{rdelim}	
-    		if(flg_lgrrg!=0){ldelim}
+    		if(scrll_tp>=el_ht_hd){
+    			if(2*el_ht_hd<wd_ht && 2*el_ht_hd<bd_ht){
+    				el_hdr.offset({top:scrll_tp,left:0});
+    			}
+    		}else{
+    			el_hdr.offset({top:0,left:0});
+    		}	
+    		if(flg_lgrrg!=0){
     			logorreg(flg_lgrrg);
-    		{rdelim}
-    	{rdelim});
+    		}
+    	});
 
-    	function logorreg(flg){ldelim}
-    		if(flg==1){ldelim}
+    	function logorreg(flg){
+    		if(flg==1){
     			$('#h3tl').html('登陆');
     			$('#lgrrgatl').html('注册');
     			$('#lgrrgatl').attr('onclick','logorreg(2)');
-    		{rdelim}else if(flg==2){ldelim}
+    		}else if(flg==2){
     			$('#h3tl').html('注册');
     			$('#lgrrgatl').html('登陆');
     			$('#lgrrgatl').attr('onclick','logorreg(1)');
-    		{rdelim}
+    		}
 
-                if(flg_lgrrg!=flg){ldelim}
+                if(flg_lgrrg!=flg){
     
                   flg_lgrrg=flg;
     
@@ -137,58 +173,58 @@
                   $('.handler').css('display','block');
                   el_lft_drg=el_drg.offset().left;
                   el_tp_drg=el_drg.offset().top;
-                  //$('.handler').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
-                  //$('.drag_bg').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
-                  //$('.drag_text').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
+                  //$('.handler').offset({top:el_tp_drg,left:el_lft_drg});
+                  //$('.drag_bg').offset({top:el_tp_drg,left:el_lft_drg});
+                  //$('.drag_text').offset({top:el_tp_drg,left:el_lft_drg});
     
                   //text.text('拖动滑块验证'); 
                   //handler.addClass('handler_bg').removeClass('handler_ok_bg');
-                  //handler.css({ldelim}'left': 0{rdelim});
-                  //drag_bg.css({ldelim}'width': 0{rdelim});
+                  //handler.css({'left': 0});
+                  //drag_bg.css({'width': 0});
                   
-                  text.text('拖动滑块验证').offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
-                  handler.addClass('handler_bg').removeClass('handler_ok_bg').css({ldelim}'left': 0{rdelim}).offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
-                  drag_bg.css({ldelim}'width': 0{rdelim}).offset({ldelim}top:el_tp_drg,left:el_lft_drg{rdelim});
+                  text.text('拖动滑块验证').offset({top:el_tp_drg,left:el_lft_drg});
+                  handler.addClass('handler_bg').removeClass('handler_ok_bg').css({'left': 0}).offset({top:el_tp_drg,left:el_lft_drg});
+                  drag_bg.css({'width': 0}).offset({top:el_tp_drg,left:el_lft_drg});
                   
-                  el_drg.css({ldelim}'color': '#fff'{rdelim});
+                  el_drg.css({'color': '#fff'});
                   flg_drg=0;
     
-               {rdelim}
+               }
     
 
 
 
-    		if((wd_wdth<300 && wd_ht<600) || (wd_wdth<600 && wd_ht<300)){ldelim}
+    		if((wd_wdth<300 && wd_ht<600) || (wd_wdth<600 && wd_ht<300)){
     			el_lgrrg.css('width','95%');
     			el_lgrrg.css('height','95%');
-    		{rdelim}else{ldelim}
-    			if(wd_wdth>wd_ht){ldelim}
+    		}else{
+    			if(wd_wdth>wd_ht){
     				el_lgrrg.css('width','600px');
     				el_lgrrg.css('height','300px');	
-    			{rdelim}else{ldelim}
+    			}else{
     				el_lgrrg.css('width','300px');
     				el_lgrrg.css('height','600px');
-    			{rdelim}
-	   		{rdelim}
+    			}
+	   		}
     		el_wdth_lgrrg=el_lgrrg.width();
     		el_ht_lgrrg=el_lgrrg.height();
     		el_ht_zhzh=el_zhzh.height();
 
-     		if(el_ht_lgrrg+scrll_tp<bd_ht){ldelim}
-    			el_lgrrg.offset({ldelim}top:(scrll_tp+wd_ht/2-el_ht_lgrrg/2),left:(wd_wdth/2-el_wdth_lgrrg/2){rdelim});
-    		{rdelim}else{ldelim}
-    			el_lgrrg.offset({ldelim}top:(bd_ht-el_ht_lgrrg),left:(wd_wdth/2-el_wdth_lgrrg/2){rdelim});
-    		{rdelim} 
-    		if(el_ht_zhzh+scrll_tp<bd_ht){ldelim}
-    			el_zhzh.offset({ldelim}top:scrll_tp,left:0{rdelim});
-    		{rdelim}else{ldelim}
-    			el_zhzh.offset({ldelim}top:bd_ht-el_ht_zhzh,left:0{rdelim});
-    		{rdelim}
+     		if(el_ht_lgrrg+scrll_tp<bd_ht){
+    			el_lgrrg.offset({top:(scrll_tp+wd_ht/2-el_ht_lgrrg/2),left:(wd_wdth/2-el_wdth_lgrrg/2)});
+    		}else{
+    			el_lgrrg.offset({top:(bd_ht-el_ht_lgrrg),left:(wd_wdth/2-el_wdth_lgrrg/2)});
+    		} 
+    		if(el_ht_zhzh+scrll_tp<bd_ht){
+    			el_zhzh.offset({top:scrll_tp,left:0});
+    		}else{
+    			el_zhzh.offset({top:bd_ht-el_ht_zhzh,left:0});
+    		}
 
 
-    	{rdelim}
+    	}
     	
-    	function lgrrgx(){ldelim}
+    	function lgrrgx(){
 
     	
     		flg_lgrrg=0;
@@ -196,11 +232,11 @@
     		el_lgrrg.css('display','none');
     		text.text('拖动滑块验证');
     		handler.addClass('handler_bg').removeClass('handler_ok_bg');
-    		handler.css({ldelim}'left': 0{rdelim});
-            drag_bg.css({ldelim}'width': 0{rdelim});
-            el_drg.css({ldelim}'color': '#fff'{rdelim});
+    		handler.css({'left': 0});
+            drag_bg.css({'width': 0});
+            el_drg.css({'color': '#fff'});
             flg_drg=0;
-    	{rdelim}
+    	}
 
        	//拖动验证
 		var x,  isMove = false
@@ -210,88 +246,91 @@
         var text = el_drg.find('.drag_text');
 
         var maxWidth = el_lgrrg.width() - handler.width();  //能滑动的最大间距
-        if(maxWidth>260){ldelim}
+        if(maxWidth>260){
         	maxWidth=220;
-        {rdelim}
+        }
 
 
 	        
 	        //鼠标    按下时候的x轴的位置     指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
 	        handler
-		        .on('mousedown',function(e){ldelim}
-		        	if(flg_drg==0){ldelim}
+		        .on('mousedown',function(e){
+		        	if(flg_drg==0){
 		            	isMove = true;
 		            	x = e.pageX ;
-		            {rdelim}
-		        {rdelim})
-		        .on('touchstart',function(e){ldelim}
-		        	if(flg_drg==0){ldelim}
+		            }
+		        })
+		        .on('touchstart',function(e){
+		        	if(flg_drg==0){
 			            isMove = true;
 			            x = e.originalEvent.touches[0].pageX ;
-		            {rdelim}
-		        {rdelim})
-		        .on('mousemove',function(e){ldelim}
-			        if(flg_drg==0){ldelim}
+		            }
+		        })
+		        .on('mousemove',function(e){
+			        if(flg_drg==0){
 			            var _x = e.pageX - x;
 			
-			            if(isMove){ldelim}
-			                if(_x >= 0 && _x <= maxWidth){ldelim}
-			                    handler.css({ldelim}'left': _x{rdelim});
-			                    drag_bg.css({ldelim}'width': _x{rdelim});
-			                {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+			            if(isMove){
+			                if(_x >= 0 && _x <= maxWidth){
+			                    handler.css({'left': _x});
+			                    drag_bg.css({'width': _x});
+			                }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
 			                    dragOk();
-			                {rdelim}
-			            {rdelim}
-			        {rdelim}
-		        {rdelim})
-		        .on('mouseup',function(e){ldelim}
-		        	if(flg_drg==0){ldelim}
+			                }
+			            }
+			        }
+		        })
+		        .on('mouseup',function(e){
+		        	if(flg_drg==0){
 			            isMove = false;
 			            var _x = e.pageX - x;
-			            if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-			                handler.css({ldelim}'left': 0{rdelim});
-			                drag_bg.css({ldelim}'width': 0{rdelim});
-			            {rdelim}
-			        {rdelim}
-		        {rdelim})
-		        .on('touchmove',function(e){ldelim}
+			            if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+			                handler.css({'left': 0});
+			                drag_bg.css({'width': 0});
+			            }
+			        }
+		        })
+		        .on('touchmove',function(e){
 		           e.preventDefault();
-		           if(flg_drg==0){ldelim}
+		           if(flg_drg==0){
 			           var _x = e.originalEvent.touches[0].pageX - x;
 			        
-			           if(isMove){ldelim}
-			               if(_x > 0 && _x <= maxWidth){ldelim}
-			                   handler.css({ldelim}'left': _x{rdelim});
-			                   drag_bg.css({ldelim}'width': _x{rdelim});
-			               {rdelim}else if(_x > maxWidth){ldelim}  //鼠标指针移动距离达到最大时清空事件
+			           if(isMove){
+			               if(_x > 0 && _x <= maxWidth){
+			                   handler.css({'left': _x});
+			                   drag_bg.css({'width': _x});
+			               }else if(_x > maxWidth){  //鼠标指针移动距离达到最大时清空事件
 			                   dragOk();
-			               {rdelim}
-			           {rdelim}
-		        	{rdelim}
-		        {rdelim})
-		        .on('touchend',function(e){ldelim}
+			               }
+			           }
+		        	}
+		        })
+		        .on('touchend',function(e){
 		           e.preventDefault();
-		           if(flg_drg==0){ldelim}
+		           if(flg_drg==0){
 			           isMove = false;
 			           var _x = e.originalEvent.changedTouches[0].pageX - x;
-			           if(_x < maxWidth){ldelim} //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-			               handler.css({ldelim}'left': 0{rdelim});
-			               drag_bg.css({ldelim}'width': 0{rdelim});
-			           {rdelim}
-		        	{rdelim}
-		        {rdelim});
+			           if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+			               handler.css({'left': 0});
+			               drag_bg.css({'width': 0});
+			           }
+		        	}
+		        });
 
         
         //清空事件
-        function dragOk(){ldelim}
+        function dragOk(){
         	flg_drg=1;
 
             handler.removeClass('handler_bg').addClass('handler_ok_bg');
             text.text('验证通过');
-            el_drg.css({ldelim}'color': '#fff'{rdelim});
-        {rdelim}
+            el_drg.css({'color': '#fff'});
+        }
     	
-	</script>
+	<?php echo '</script'; ?>
+>
 
 </body>
 </html>
+<?php }
+}
