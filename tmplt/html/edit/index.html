@@ -3,14 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>KF富文本编辑器</title>
-    <!-- 
+  <!--   
     <script type="text/javascript" src="/../trth/js/jquery.min.js"></script>
     <script type="text/javascript" src="/../trth/js/bootstrap.min.js"></script>
     
     <link rel="stylesheet" href="/../trth/css/bootstrap.min.css">
     <link rel="stylesheet" href="/../trth/css/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/../trth/css/style.css" id="theme-styles">
-     -->
+    
 
     <script type="text/javascript" src="trth/js/jquery.min.js"></script>
     <script type="text/javascript" src="trth/js/bootstrap.min.js"></script>
@@ -19,7 +19,15 @@
     <link rel="stylesheet" href="trth/css/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="trth/css/style.css" id="theme-styles">
 
-
+ -->
+ 
+    <script type="text/javascript" src="html/edit/js/jquery.min.js"></script>
+    <script type="text/javascript" src="html/edit/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="html/edit/css/bootstrap.min.css">
+    <link rel="stylesheet" href="html/edit/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="html/edit/css/style.css" id="theme-styles">
+    
 
     <script type="text/javascript">
         $(function () {
@@ -58,6 +66,15 @@
 
     <p style="border: 1px dashed #ccc;" id="preview_area"></p>
 
+
+<form action="upload_file.php" method="post"
+enctype="multipart/form-data">
+<label for="file">Filename:</label>
+<input type="file" name="file" id="file" /> 
+<br />
+<input type="submit" name="submit" value="Submit" />
+</form>
+
 <!-- 
 <p>标签式的导航菜单</p>
 <ul class="nav nav-tabs">
@@ -68,29 +85,93 @@
  -->
 
 <div class="widewrapper main"><div class="container">
-
-<ul class="nav nav-tabs">
-	<li class="active"><a href="javascript:void();" title="上传本地图片"><i class="fa fa-file-image-o"></i></a></li>
-	<li><a href="javascript:void();" title="上传网络图片"><i class="fa fa-file-archive-o" aria-hidden="true"></i></a></li>
-	<li><a href="javascript:void();" title="上传txt本文"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></li>
+<!-- 
+<ul id="rtebtn_ul" class="nav nav-tabs">
+	<li><a id="rtebtn_li_lclimg" href="javascript:;" title="插入本地图片"><i class="fa fa-file-image-o"></i></a></li>
+	<li><a id="rtebtn_li_netimg" href="javascript:;" title="插入网络图片"><i class="fa fa-file-archive-o" aria-hidden="true"></i></a></li>
+	<li><a id="rtebtn_li_txtfile" href="javascript:;" title="插入txt本文"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></li>
 </ul>
-
+ -->
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 clean-superblock" id="contact">
+                <ul id="rtebtn_ul" class="nav nav-tabs">
+	<li><a id="rtebtn_li_lclimg" href="javascript:;" title="插入本地图片"><i class="fa fa-file-image-o"></i></a></li>
+	<li><a id="rtebtn_li_netimg" href="javascript:;" title="插入网络图片"><i class="fa fa-file-archive-o" aria-hidden="true"></i></a></li>
+	<li><a id="rtebtn_li_txtfile" href="javascript:;" title="插入txt本文"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></li>
+</ul>
 
 <div class="row">
   <div class="col-sm-11">
     <div class="header" style="background-color:#f1f1f1"> 
 	    <div class="row" >
-	      <div class="col-xs-11 col-sm-11">如有需要，请将鼠标移动至上方图标，根据提示操作</div>
-	      <div class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作1</div>
-	      <div class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作2</div>
-	      <div class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作3</div>
+	      <div id="rtefnc_tip" class="col-xs-11 col-sm-11">如有需要，请将鼠标移动至上方图标，根据提示操作</div>
+	      <div id="rtefnc_lclimg" class="col-xs-11 col-sm-11" style="display:none">
+
+			<form action="upload_file.php" method="post" enctype="multipart/form-data">
+					Filename:<input type="image" name="file" id="file" style="display:inline"/>
+					<input type="submit" name="submit" value="Submit" style="display:inline"/>
+					</form>
+
+		  </div>
+	      <div id="rtefnc_netimg" class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作2</div>
+	      <div id="rtefnc_txtfile" class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作3</div>
 	    </div>
      </div> 
   </div>
 </div>
 
+
+
+
+<!--                     <h2>Contact</h2>
+                    
+                    <form action="#" method="get" accept-charset="utf-8" class="contact-form">
+                        <input type="text" name="name" id="contact-name" placeholder="Name" class="form-control input-lg">
+                        <input type="email" name="email" id="contact-email" placeholder="Email" class="form-control input-lg">
+                         -->
+                        <textarea rows="10" name="message" id="contact-body" placeholder="Your Message" class="form-control input-lg" style="margin-top:15px"></textarea>
+                        <div class="buttons clearfix" style="margin-top:15px">
+                            <button type="submit" class="btn btn-xlarge btn-clean-one" style="width:100%">Submit</button>
+                        </div>                    
+<!--                     </form> -->
+                </div>
+            </div>        
+
+<!-- 
+<div class="row">
+  <div class="col-sm-11">
+    <div class="header" style="background-color:#f1f1f1"> 
+	    <div class="row" >
+	      <div id="rtefnc_tip" class="col-xs-11 col-sm-11">如有需要，请将鼠标移动至上方图标，根据提示操作</div>
+	      <div id="rtefnc_lclimg" class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作1</div>
+	      <div id="rtefnc_netimg" class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作2</div>
+	      <div id="rtefnc_txtfile" class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作3</div>
+	    </div>
+     </div> 
+  </div>
+</div>
+ -->
+ 
 <script type="text/javascript">
 	var arrRteBtn=['lclimg','netimg','txtfile'];
+	var rteBtnSuffix='rtebtn_';
+	var rteFncSuffix='rtefnc_';
+	//var liSuffix='li_';
+	//var divSuffix='div_';
+	$('[id^='+rteBtnSuffix+'li_]').on('click',function(){
+		tmpElIdPostfix=$(this).attr('id').substring(10);
+		//alert(tmpElIdPostfix);
+		tmpArrRteBtn=$.grep(arrRteBtn,function(value){
+			return value != tmpElIdPostfix;
+		});
+		$('#'+rteFncSuffix+'tip').css('display','none');
+		$.each(tmpArrRteBtn,function(index,value){
+			$('#'+rteFncSuffix+value).css('display','none');
+			$('#'+rteBtnSuffix+'li_'+value).closest('li').removeClass('active');
+		});
+		$('#'+rteFncSuffix+tmpElIdPostfix).show();
+		$('#'+rteBtnSuffix+'li_'+tmpElIdPostfix).closest('li').addClass('active');
+	});
 </script>
 
                 

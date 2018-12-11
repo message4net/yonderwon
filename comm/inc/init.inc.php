@@ -190,8 +190,10 @@ class Init {
 
         //echo BASE_DIR.NAME_APP.DS.$_REQUEST['a'].DS;
         if($_REQUEST['a']!='' && is_dir(BASE_DIR.NAME_APP.DS.$_REQUEST['a'].DS)){
-            
-            define('APP_NAME', $_REQUEST['a']);
+            //$tmpAppName=APP_NAME;
+           // if(!defined(APP_NAME)){
+            	define('APP_NAME', $_REQUEST['a']);
+            //}
         }else{
             define('APP_NAME', '404');
         }

@@ -1,5 +1,5 @@
 <?php 
-error_log('aaa','3','../log/log.log');
+//error_log('aaa','3','../log/log.log');
 
 echo 'abb1';
 // require dirname(__DIR__).'/comm/inc/parsefront.inc.php';

@@ -34,7 +34,7 @@
 				<a href="index.php" title="返回首页">
 					<div class="link" id="home"></div>
 				</a>
-				<a href="###" title="联系管理员">
+				<a href="javascript:;" title="联系管理员">
 					<div class="link" id="contact"></div>
 				</a>
 			</div>
