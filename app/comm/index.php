@@ -19,7 +19,8 @@
 
 switch ($_REQUEST['m']){
     case 'upl':
-        require 'img_upl.php';
+        //require 'img_upl.php';
+        require 'upload.php';
         break;
     default:
         header("Location: index.php");

@@ -30,7 +30,7 @@ class Init {
 	
 	public function logerr($logerr){
 	    $_dir=BASE_DIR.'log/log.log';
-	    error_log($logerr,3,$_dir);
+	    error_log($logerr.'\r\n',3,$_dir);
 	}
 	
 /**

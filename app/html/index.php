@@ -2,7 +2,7 @@
 
 //switch ($_REQUEST['m']){
 //    case 'edit':
-//$init->logerr(BASE_DIR.NAME_PUBLIC.DS.$_REQUEST['a'].DS.$_REQUEST['m'].DS.$_REQUEST['f'].POSTFIX_HTML);
+$init->logerr(BASE_DIR.NAME_PUBLIC.DS.$_REQUEST['a'].DS.$_REQUEST['m'].DS.$_REQUEST['f'].POSTFIX_HTML);
 //error_log('BASE_DIR.NAME_PUBLIC.DS.$_REQUEST['a'].DS.$_REQUEST['m'].DS.$_REQUEST['f'].POSTFIX_HTML',3,)
     	if($_REQUEST['f']=='') $_REQUEST['f']=NAME_INDEX;
     	if($_REQUEST['m']!='' && is_file(BASE_DIR.NAME_PUBLIC.DS.$_REQUEST['a'].DS.$_REQUEST['m'].DS.$_REQUEST['f'].POSTFIX_HTML)){

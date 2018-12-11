@@ -4,6 +4,7 @@ require 'comm'.DIRECTORY_SEPARATOR.'cfg'.DIRECTORY_SEPARATOR.'init.cfg.php';
 
 //echo $_REQUEST['a'].'q<br/>';
 $init=new Init();
+$db=new DbSqlPdo();
 $init->url_encode();
 
 //echo $_REQUEST['a'];

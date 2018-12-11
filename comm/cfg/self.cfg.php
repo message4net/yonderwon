@@ -6,7 +6,7 @@ define('URL_BASE', 'http://www.yonderwon.com:8888/yonderwon/');
 //define('URL_ALIS','public/');
 
 //定义数据库
-define('DB_NAME','yd_ops');
+define('DB_NAME','ydv');
 define('DB_HOST','127.0.0.1');
 define('DB_PORT','8889');
 define('DB_USER','root');

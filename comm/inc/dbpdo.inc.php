@@ -53,13 +53,15 @@ class DbSqlPdo{
         if(empty($this->CONN)) return false;//如果连接为空，则放回FALSE
         $this->CONN->query('set names utf8');
         $results=$this->CONN->prepare($sql_pre);
-        $datas=$results->execute($sql_para_arr);
-        if((!$datas)){//如果查询结果空则释放结果并返回FALSE
-            return false;
-            //return 'A';
-        }else{
-            return true;
-        }
+        $results->execute($sql_para_arr);
+        $datas=$this->CONN->lastInsertId();
+        return $datas;
+        //if((!$datas)){//如果查询结果空则释放结果并返回FALSE
+        //    return false;
+        //    //return 'A';
+        //}else{
+        //    return true;
+        //}
     }
     
     /**

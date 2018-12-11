@@ -105,12 +105,9 @@ enctype="multipart/form-data">
     <div class="header" style="background-color:#f1f1f1"> 
 	    <div class="row" >
 	      <div id="rtefnc_tip" class="col-xs-11 col-sm-11">如有需要，请将鼠标移动至上方图标，根据提示操作</div>
-	      
-	      <!-- 
 	      <div id="rtefnc_lclimg" class="col-xs-11 col-sm-11" style="display:none">
-<form action="index.php?a=comm&m=upl" method="post" enctype="multipart/form-data">
- --><!--file定义输入字段和 "浏览"按钮，供文件上传。--><!-- 
-	<input type='hidden' name='tp' value='0' />
+<form action="upload.php" method="post" enctype="multipart/form-data">
+<!--file定义输入字段和 "浏览"按钮，供文件上传。-->
     <input type="file" name="file" style="display:inline" />
     <input  type="submit" value="上传" style="display:inline"/>
 
@@ -118,18 +115,8 @@ enctype="multipart/form-data">
 
 
 		  </div>
-		   -->
-		  <div id="rtefnc_lclimg" class="col-xs-11 col-sm-11" style="display:none">
-				<form action="index.php?a=comm&m=upl" method="post" enctype="multipart/form-data">
-				<!--file定义输入字段和 "浏览"按钮，供文件上传。-->
-					<input type='hidden' name='tp' value='0' />
-				    <input type="file" name="file" style="display:inline" /> 
-				    <input  type="submit" value="上传" style="display:inline"/>
-				
-				</form>
-		  </div>
 	      <div id="rtefnc_netimg" class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作2</div>
-	      <!-- <div id="rtefnc_txtfile" class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作3</div> -->
+	      <div id="rtefnc_txtfile" class="col-xs-11 col-sm-11" style="display:none">如有需要，请将鼠标移动至上方图标，根据提示操作3</div>
 	    </div>
      </div> 
   </div>
@@ -169,7 +156,6 @@ enctype="multipart/form-data">
  
 <script type="text/javascript">
 	var arrRteBtn=['lclimg','netimg','txtfile'];
-	var arrRteFnc=['netimg','lclfl'];
 	var rteBtnSuffix='rtebtn_';
 	var rteFncSuffix='rtefnc_';
 	//var liSuffix='li_';
