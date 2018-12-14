@@ -40,6 +40,68 @@
 
 <body>
 
+	//图片上传脚本
+	function openimagefile(){
+		jQuery('#imagefile').attr("value","");
+		jQuery('#imagefile').trigger("click");
+	}
+	
+	function imagefilechange(str){
+		if(str != null && str != ""){
+			//alert(str);
+			var filesize = jQuery("#imagefile")[0].files[0].size;
+			var mazsize = 3 * 1024 * 1024;
+			if(filesize > mazsize){
+				//alert(jQuery("#imagefile")[0].files[0].size);  //文件容量
+				jQuery('#imagefile').attr("value","");
+				alert("文件容量不能超过3M");
+			}
+			else{
+				jQuery('#uploadFileName').attr("value",jQuery("#imagefile")[0].files[0].name);
+				jQuery.ajax({
+			        url: 'uploadfile.html',
+			        type: 'POST',
+			        cache: false,
+			        data: new FormData(jQuery('#file_form')[0]),
+			        processData: false,
+			        contentType: false,
+			        dataType:"json",
+			        beforeSend: function(){
+			            
+			        },
+			        success : function(data) {
+			        	if(data.resultCode == 200){
+			        		jQuery('#imgattachlist').html(data.imagelist);
+			        		jQuery('#imagefile').attr("value","");
+			        	}
+			        	else if(data.resultCode == 201){
+			        		alert("不是有效的图片文件");
+			        	}
+			        	else if(data.resultCode == 202){
+			        		alert("图片文件不合法");
+			        	}
+			        	else if(data.resultCode == 203){
+			        		alert("图片容量超了");
+			        	}
+			        	else if(data.resultCode == 204){
+			        		alert("禁止上传图片");
+			        	}
+			        	else if(data.resultCode == 300){
+			        		alert("登录状态已失效");
+			        		location.href="forum.html";
+			        	}else if(data.resultCode == 205){
+			        		alert("上传图片总数超过限制");
+			        	}
+			        	else{
+			        		alert("系统异常，请稍后再试：" + data.resultCode);
+			        	}
+			        }
+			    });
+			}
+		}
+	}
+	
+		
 
     <p><iframe id="editor" width="600px" height="200px" style="border:solid 1px;"></iframe></p>
     <input type="text" id="path" value="http://www.google.com.hk/intl/zh-CN/images/logo_cn.png" />
