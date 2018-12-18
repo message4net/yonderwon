@@ -62,7 +62,7 @@
         <div class="widewrapper subheader">
             <div class="container">
                 <div class="clean-breadcrumb">
-                    <a href="index.php?a={APP_NAME}&m=about">{$title}</a>
+                    <a href="index.php?a={APP_NAME}&m={APP_INF}">{$title}</a>
                 </div>
 
                 <div class="clean-searchbox">
